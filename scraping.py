@@ -1,15 +1,24 @@
+import sys
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+import os
 import time
 import requests
 import io
+from shutil import make_archive
 from PIL import Image
 
+#How to run : python scraping.py webdriver_path download_path max_images_per_key key1 key2 key3 ...
+#Ex : python scraping.py ./chromedriver-win64/chromedriver.exe ./images/original_images/ 200 couch castle sea landscape
+webdriver_path = sys.argv[1]
+download_path = sys.argv[2]
+max_images_per_key = int(sys.argv[3])
+keys = sys.argv[4:]
 
 
 def get_images_urls(driver, key, max_images=200, delay=10, verbose=True):
@@ -125,6 +134,10 @@ def get_images(keys, webdriver_path, download_path, max_images_per_key=200, dela
     except:
         pass
 
+    #If download_path doesn't exist, create it
+    if not os.path.exists(download_path):
+        os.makedirs(download_path)
+
     #Download at most max_images_per_key for each key
     for key in keys:
         img_nb = 1
@@ -133,11 +146,11 @@ def get_images(keys, webdriver_path, download_path, max_images_per_key=200, dela
             download_image(url=url, file_path=download_path, file_name=key + str(img_nb), file_type=file_type, verbose=verbose)
             img_nb += 1
     
+    #Zip the folder with the images
+    make_archive(download_path[:-1], format='zip', root_dir=download_path)
+
     driver.close()
 
 
 #Launch code
-webdriver_path = "./chromedriver-win64/chromedriver.exe"
-keys = ['chocolate', 'ice cream']
-download_path = './images/color_images/'
-get_images(keys, webdriver_path, download_path, max_images_per_key=20)
+get_images(keys, webdriver_path, download_path, max_images_per_key=max_images_per_key)

@@ -1,5 +1,6 @@
 import sys
 import os
+from shutil import make_archive
 from PIL import Image
 
 #How to run : python color_to_bw.py path_original path_color path_bw
@@ -18,6 +19,9 @@ def resize_images(path_original, path_resized, width=300, height=200, file_type=
         height (int) : height of the resized image (in pixels).
         file_type (string) : type of the images ('PNG', 'JPEG',...).
     """
+    if not os.path.exists(path_resized):
+        os.makedirs(path_resized)
+
     ratio = width/height
     for img_name in os.listdir(path_original):
         img = Image.open(path_original + img_name)
@@ -34,6 +38,9 @@ def resize_images(path_original, path_resized, width=300, height=200, file_type=
         #Save resized image
         with open(path_resized + img_name, 'wb') as file:
             resized_img.save(file, file_type)
+    
+    #Zip the folder
+    make_archive(path_resized[:-1], format='zip', root_dir=path_resized)
 
 
 
@@ -46,12 +53,18 @@ def convert_color_to_black_and_white(path_color, path_bw, file_type='PNG'):
         file_type (string) : type of the images ('PNG', 'JPEG',...).
     """
 
+    if not os.path.exists(path_bw):
+        os.makedirs(path_bw)
+
     for img_name in os.listdir(path_color):
         color_img = Image.open(path_color + img_name)
         bw_img = color_img.convert('L')
 
         with open(path_bw + img_name, 'wb') as file:
             bw_img.save(file, file_type)
+    
+    #Zip the folder
+    make_archive(path_bw[:-1], format='zip', root_dir=path_bw)
 
 
 resize_images(path_original=path_original,
