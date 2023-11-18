@@ -142,6 +142,7 @@ def get_images(keys, webdriver_path, download_path, max_images_per_key=200, dela
     for key in keys:
         img_nb = 1
         urls = get_images_urls(driver=driver, key=key, max_images=max_images_per_key, delay=delay, verbose=verbose)
+        print(f"{len(urls)} urls found")
         for url in urls:
             download_image(url=url, file_path=download_path, file_name=key + str(img_nb), file_type=file_type, verbose=verbose)
             img_nb += 1
@@ -154,3 +155,8 @@ def get_images(keys, webdriver_path, download_path, max_images_per_key=200, dela
 
 #Launch code
 get_images(keys, webdriver_path, download_path, max_images_per_key=max_images_per_key)
+
+
+
+#Words : 
+#lunch letters fairies pig horse cow chicken lion rainforest forest leaves ice icecream corn cattle mountain snow train car plane truck grape appletree orangetree army fire fireworks bedroom couch chocolate earth jam fish ocean beach bikes cats dogs cities buildings suburbs face football climbing cliff climbers footballers human girl boy child 
