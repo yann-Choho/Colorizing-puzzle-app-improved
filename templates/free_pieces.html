@@ -1,0 +1,85 @@
+<!-- templates/free_pieces.html -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Puzzle styles in css */
+        #puzzle-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin: 20px auto;
+            width: 330px; 
+        }
+
+        .grid-cell {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .puzzle-pieces-container {
+        /* The 2 following lines display the avaliable pieces in a row */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .puzzle-piece {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #000;
+            cursor: pointer;
+            background-size: cover;  /* Added to ensure background image is visible */
+        }
+    </style>
+</head>
+<body>
+    <!-- The puzzle Title -->
+    <h1>Free Pieces Puzzle</h1>
+    
+
+    <div id="puzzle-container">
+        <!-- Empty grid cells will be dynamically added here -->
+        <div class="grid-cell" data-index="0"></div>
+        <div class="grid-cell" data-index="1"></div>
+        <div class="grid-cell" data-index="2"></div>
+        <div class="grid-cell" data-index="3"></div>
+        <div class="grid-cell" data-index="4"></div>
+        <div class="grid-cell" data-index="5"></div>
+        <div class="grid-cell" data-index="6"></div>
+        <div class="grid-cell" data-index="7"></div>
+        <div class="grid-cell" data-index="8"></div>
+    </div>
+
+    <!-- Puzzle pieces will be dynamically added here -->
+    <div class="puzzle-pieces-container">
+        <div class="puzzle-piece" data-piece-index="0"></div>
+        <div class="puzzle-piece" data-piece-index="1"></div>
+        <div class="puzzle-piece" data-piece-index="2"></div>
+        <div class="puzzle-piece" data-piece-index="3"></div>
+        <div class="puzzle-piece" data-piece-index="4"></div>
+        <div class="puzzle-piece" data-piece-index="5"></div>
+        <div class="puzzle-piece" data-piece-index="6"></div>
+        <div class="puzzle-piece" data-piece-index="7"></div>
+        <div class="puzzle-piece" data-piece-index="8"></div>
+    </div>
+    
+        <!-- The shuffle button -->
+<button id="shuffle-button" onclick="shufflePieces()">Shuffle</button>
+        <!-- The link to the Index page -->
+        <a href="{{ url_for('index') }}">Index</a>
+            <!-- Call the JavaScript file -->
+        <script src="{{ url_for('static', filename='js/free_pieces.js') }}"></script>
+</body>
+</html>

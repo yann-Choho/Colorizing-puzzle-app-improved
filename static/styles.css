@@ -1,4 +1,5 @@
 /* styles.css */
+/* For the general display settings */
 
 body {
     margin: 0;
@@ -10,21 +11,34 @@ body {
     background-color: #f0f0f0;
 }
 
+
+/* For the sliding puzzle page */
+
+
+/* The grid for the pieces*/
 #puzzle-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Adjust based on your puzzle dimensions */
-    gap: 2px; /* Adjust as needed */
+    grid-template-columns: repeat(3, 1fr); /* Adjust based on your puzzle dimensions */
+    gap: 2px; /* gap between pieces */
+    width: auto; /* Allow the container to dynamically fit content */
+    max-width: 100%; /* Ensure the container doesn't exceed the viewport width */
 }
 
+/* The non-empty pieces */
 .puzzle-piece {
     box-sizing: border-box;
     border: 1px solid #ccc;
-    background-size: cover;
+    background-size: cover; /* Fit the content */
     cursor: pointer;
     transition: background-position 0.3s ease-in-out;
+    width: auto; /* Fit the content */
+    height: auto; /* Fit the content */
 }
 
+/* One piece is empty (no picture displayed) */
 .puzzle-piece.empty {
     background-color: #f0f0f0; /* Adjust the color as needed */
     background-image: none; /* Ensure no image is displayed */
+    width: auto; /* Fit the content */
+    height: auto; /* Fit the content */
 }
