@@ -1,3 +1,6 @@
+#How to run : python scraping.py webdriver_path download_path max_images_per_key key1 key2 key3 ...
+#Ex : python scraping.py ./chromedriver-win64/chromedriver.exe ./images/original_images/ 200 couch castle sea landscape
+
 import sys
 
 from selenium import webdriver
@@ -12,13 +15,6 @@ import requests
 import io
 from shutil import make_archive
 from PIL import Image
-
-#How to run : python scraping.py webdriver_path download_path max_images_per_key key1 key2 key3 ...
-#Ex : python scraping.py ./chromedriver-win64/chromedriver.exe ./images/original_images/ 200 couch castle sea landscape
-webdriver_path = sys.argv[1]
-download_path = sys.argv[2]
-max_images_per_key = int(sys.argv[3])
-keys = sys.argv[4:]
 
 
 def get_images_urls(driver, key, max_images=200, delay=10, verbose=True):
@@ -142,7 +138,8 @@ def get_images(keys, webdriver_path, download_path, max_images_per_key=200, dela
     for key in keys:
         img_nb = 1
         urls = get_images_urls(driver=driver, key=key, max_images=max_images_per_key, delay=delay, verbose=verbose)
-        print(f"{len(urls)} urls found")
+        if verbose:
+            print(f"{len(urls)} urls found")
         for url in urls:
             download_image(url=url, file_path=download_path, file_name=key + str(img_nb), file_type=file_type, verbose=verbose)
             img_nb += 1
@@ -154,8 +151,13 @@ def get_images(keys, webdriver_path, download_path, max_images_per_key=200, dela
 
 
 #Launch code
-get_images(keys, webdriver_path, download_path, max_images_per_key=max_images_per_key)
-
+if __name__ == "main":
+    webdriver_path = sys.argv[1]
+    download_path = sys.argv[2]
+    max_images_per_key = int(sys.argv[3])
+    keys = sys.argv[4:]
+    
+    get_images(keys, webdriver_path, download_path, max_images_per_key=max_images_per_key)
 
 
 #Words : 

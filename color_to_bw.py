@@ -1,13 +1,10 @@
+#How to run : python color_to_bw.py path_original path_color path_bw
+#Ex : python color_to_bw.py ./images/original_images/ ./images/color_images/ ./images/bw_images/
+
 import sys
 import os
 from shutil import make_archive
 from PIL import Image
-
-#How to run : python color_to_bw.py path_original path_color path_bw
-#Ex : python color_to_bw.py ./images/original_images/ ./images/color_images/ ./images/bw_images/
-path_original = sys.argv[1]
-path_color = sys.argv[2]
-path_bw = sys.argv[3]
 
 def resize(img, width=64, height=64):
     """Resize an image to a specified width and height, crop image if necessary to maintain aspect ratio.
@@ -82,10 +79,15 @@ def convert_color_to_black_and_white(path_color, path_bw, file_type='PNG'):
     make_archive(path_bw[:-1], format='zip', root_dir=path_bw)
 
 
-resize_images(path_original=path_original,
-              path_resized=path_color,
-              width=64,
-              height=64)
+if __name__ == "__main__":
+    path_original = sys.argv[1]
+    path_color = sys.argv[2]
+    path_bw = sys.argv[3]
 
-convert_color_to_black_and_white(path_color=path_color,
-                                 path_bw=path_bw)
+    resize_images(path_original=path_original,
+                path_resized=path_color,
+                width=64,
+                height=64)
+
+    convert_color_to_black_and_white(path_color=path_color,
+                                    path_bw=path_bw)
