@@ -15,20 +15,20 @@ import requests
 import io
 from shutil import make_archive
 from PIL import Image
+from typing import Set
 
-
-def get_images_urls(driver, key, max_images=200, delay=10, verbose=True):
+def get_images_urls(driver: webdriver.Chrome, key: str, max_images: int = 200, delay: int = 10, verbose: bool = True) -> Set[str]:
     """Get images urls for the search word "key".
 
     Arguments:
-        driver (webdriver) : Google Chrome webdriver, on a google image page.
-        key (string) : search word (e.g. "horse") to look for images.
+        driver (webdriver.Chrome) : Google Chrome webdriver, on a google image page.
+        key (str) : search word (e.g. "horse") to look for images.
         max_images (int) : maximum number of images urls we want to have for the search word "key".
         delay (int) : maximum time (in seconds) we are willing to wait for a page to load.
-        verbose (boolean) : if True, print strings describing the operations of the code.
+        verbose (bool) : if True, print strings describing the operations of the code.
 
     Returns:
-        urls (string set) : set of at most max_images of images urls.
+        urls (Set[str]) : set of at most max_images of images urls.
     """
 
     
@@ -76,16 +76,15 @@ def get_images_urls(driver, key, max_images=200, delay=10, verbose=True):
             continue
     return urls
 
-
-def download_image(url, file_path, file_name, file_type='PNG', verbose=True):
+def download_image(url: str, file_path: str, file_name: str, file_type: str = 'PNG', verbose: bool = True) -> None:
     """Download an image given its url.
 
     Arguments:
-        url (string) : url of the image.
-        file_path (string) : path of the folder to store the file in.
-        file_name (string) : name of the file.
-        file_type (string) : type of the image ('PNG', 'JPEG',...).
-        verbose (boolean) : if True, print strings describing the operations of the code.
+        url (str) : url of the image.
+        file_path (str) : path of the folder to store the file in.
+        file_name (str) : name of the file.
+        file_type (str) : type of the image ('PNG', 'JPEG',...).
+        verbose (bool) : if True, print strings describing the operations of the code.
     """
     try:
         #Get the image url and convert to image
@@ -105,18 +104,17 @@ def download_image(url, file_path, file_name, file_type='PNG', verbose=True):
         pass
 
 
-
-def get_images(keys, webdriver_path, download_path, max_images_per_key=200, delay=10, file_type='PNG', verbose=True):
+def get_images(keys: list[str], webdriver_path: str, download_path: str, max_images_per_key: int = 200, delay: int = 10, file_type: str = 'PNG', verbose: bool = True) -> None:
     """Find and download images given a list of key words.
 
     Arguments:
-        keys (string list) : list of key words to look for.
-        webdriver_path (string) : path of a Chrome webdriver.
-        download_path (string) : path of the folder to store the images in.
+        keys (list[str]) : list of key words to look for.
+        webdriver_path (str) : path of a Chrome webdriver.
+        download_path (str) : path of the folder to store the images in.
         max_images_per_key (int) : maximum number of images we want to have for each key word.
         delay (int) : maximum time (in seconds) we are willing to wait for a page to load.
-        file_type (string) : type of the images ('PNG', 'JPEG',...).
-        verbose (boolean) : if True, print strings describing the operations of the code.
+        file_type (str) : type of the images ('PNG', 'JPEG',...).
+        verbose (bool) : if True, print strings describing the operations of the code.
     """
     #Find chrome webdriver
     driver = webdriver.Chrome(webdriver_path)
@@ -156,7 +154,7 @@ if __name__ == "main":
     download_path = sys.argv[2]
     max_images_per_key = int(sys.argv[3])
     keys = sys.argv[4:]
-    
+
     get_images(keys, webdriver_path, download_path, max_images_per_key=max_images_per_key)
 
 

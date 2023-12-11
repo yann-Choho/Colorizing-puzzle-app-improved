@@ -6,11 +6,11 @@ import os
 from shutil import make_archive
 from PIL import Image
 
-def resize(img, width=64, height=64):
+def resize(img: Image.Image, width: int = 64, height: int = 64) -> Image.Image:
     """Resize an image to a specified width and height, crop image if necessary to maintain aspect ratio.
     
     Arguments:
-        img (PIL image) : image to resize.
+        img (Image.Image) : image to resize.
         width (int) : width of the resized image (in pixels).
         height (int) : height of the resized image (in pixels).
     """
@@ -29,16 +29,15 @@ def resize(img, width=64, height=64):
     return resized_img
 
 
-
-def resize_images(path_original, path_resized, width=64, height=64, file_type='PNG'):
+def resize_images(path_original: str, path_resized: str, width: int = 64, height: int = 64, file_type: str = 'PNG') -> None:
     """Resize color images to a specified width and height, save resized images in path_resized.
     
     Arguments:
-        path_original (string) : path of the folder in which the scraped images are.
-        path_resized (string) : path of the folder in which to store the resized color images.
+        path_original (str) : path of the folder in which the scraped images are.
+        path_resized (str) : path of the folder in which to store the resized color images.
         width (int) : width of the resized image (in pixels).
         height (int) : height of the resized image (in pixels).
-        file_type (string) : type of the images ('PNG', 'JPEG',...).
+        file_type (str) : type of the images ('PNG', 'JPEG',...).
     """
     if not os.path.exists(path_resized):
         os.makedirs(path_resized)
@@ -55,14 +54,13 @@ def resize_images(path_original, path_resized, width=64, height=64, file_type='P
     make_archive(path_resized[:-1], format='zip', root_dir=path_resized)
 
 
-
-def convert_color_to_black_and_white(path_color, path_bw, file_type='PNG'):
+def convert_color_to_black_and_white(path_color: str, path_bw: str, file_type: str = 'PNG') -> None:
     """Convert color images to black and white images, and stores them in path_bw.
 
     Arguments:
-        path_color (string) : path of the folder in which the color images are.
-        path_bw (string) : path of the folder in which to store the black and white images.
-        file_type (string) : type of the images ('PNG', 'JPEG',...).
+        path_color (str) : path of the folder in which the color images are.
+        path_bw (str) : path of the folder in which to store the black and white images.
+        file_type (str) : type of the images ('PNG', 'JPEG',...).
     """
 
     if not os.path.exists(path_bw):
