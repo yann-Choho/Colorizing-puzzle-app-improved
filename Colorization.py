@@ -6,11 +6,12 @@ CHECK LIGNE 263 pour la localisation de l'image test. Check ligne 64 pour le nom
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import torchvision
-import torchvision.transforms as transforms
+from torchvision import datasets, transforms
+from torch.utils.data import DataLoader, random_split
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
+import os
 #%%
 
 # Set device
@@ -25,14 +26,32 @@ else:
   print("No NVIDIA driver found. Using CPU")
 
 #%% Load the CIFAR-10 dataset
+img_path=r"C:\Users\rayan\Documents\GitHub\Projet infra\images folder\color"
+#%%
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# cette ligne indique la façon dont il faudra transformer les images.
+data_transform = transforms.Compose([
+    transforms.TrivialAugmentWide(num_magnitude_bins=31),
+    transforms.ToTensor() # normalise les valeurs des pixels.
+    ])
+# TrivialAugment est une méthode de Data Augmentation: on choisit une méthode d'augmentation parmi une sélection de méthodes triviales (baisse de luminosité, retournement de l'image, etc.), plus ou moins impactantes, et appliquées à un degré plus ou moins intense. num_magnitude bins, situé entre 1 et 31, augmente la probabilité d'avoir une transformation plus sérieuse et appliquée de façon plus intense.
+
+
+full_dataset = datasets.ImageFolder(root=img_path, transform=data_transform, target_transform=None)
+# attention: pour le chemin menant aux images, ImageFolder attend un dossier comportant des sous-dossiers, un pour chaque classe. Pour cet exercice, il n'est pas question de classifier les images, il n'y aura donc qu'un seul sous-dossier
+#%%
+train_subset, test_subset= random_split(full_dataset,[0.8,0.2])
+
+train_loader = DataLoader(dataset=train_subset,batch_size=1,num_workers=os.cpu_count(),shuffle=True)
+#num_workers=os.cpu_count() pour que le DataLoader puisse utiliser un maximum de processeurs pour charger les données.
+
+test_loader = DataLoader(dataset=test_subset,batch_size=1,num_workers=os.cpu_count(),shuffle=True)
+
 transform = transforms.Compose([
     transforms.ToTensor(),
 ])
-train_dataset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
-train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True, num_workers=2)
 
-test_dataset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
-test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=64, shuffle=False, num_workers=2)
 if __name__=="__main__":
     # Define the colorization model
     class ColorizationNet(nn.Module):
@@ -252,7 +271,7 @@ if __name__=="__main__":
             colorized_images_cpu=exaggerate_colors(colorized_images_cpu)
     
             # Visualize the grayscale, colorized, and original images
-            visualize_all_three(original_images_cpu, grayscale_images_cpu, colorized_images_cpu)
+            # visualize_all_three(original_images_cpu, grayscale_images_cpu, colorized_images_cpu)
     
             if i == 10:  # only do this for up to certain batch for demonstration purposes
                 break
