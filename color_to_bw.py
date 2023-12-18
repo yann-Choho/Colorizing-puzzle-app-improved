@@ -13,6 +13,9 @@ def resize(img: Image.Image, width: int = 64, height: int = 64) -> Image.Image:
         img (Image.Image) : image to resize.
         width (int) : width of the resized image (in pixels).
         height (int) : height of the resized image (in pixels).
+
+    Returns:
+        resized_img (Image.Image) : resized image.
     """
 
     ratio = width/height
