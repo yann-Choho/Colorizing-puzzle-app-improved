@@ -1,18 +1,37 @@
 <!-- templates/free_pieces.html -->
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+
         /* Puzzle styles in css */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            justify-content: flex-start;
+            background-image: url("{{ url_for('static', filename='images/background1.jpg') }}");
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the image in the viewport */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            background-color: #f0f0f0; /* Fallback color */
+        }
+
+        h1 {
+            margin-top: 20px; /* Adjust as needed */
+        }
+
         #puzzle-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2px;
-            margin: 20px auto;
+            margin: 20px 0;
             width: 330px; 
         }
 
@@ -28,11 +47,11 @@
         }
 
         .puzzle-pieces-container {
-        /* The 2 following lines display the avaliable pieces in a row */
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             justify-content: center;
+            margin-bottom: 20px; /* Space before the shuffle button */
         }
 
         .puzzle-piece {
@@ -40,17 +59,47 @@
             height: 80px;
             border: 1px solid #000;
             cursor: pointer;
-            background-size: cover;  /* Added to ensure background image is visible */
+            background-size: cover;
+        }
+
+        .button-style {
+        padding: 0px 20px; /* Adjust padding to control the size */
+        margin: 0 5px;
+        text-decoration: none;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-block; /* Important for anchor to behave like a button */
+        text-align: center;
+        /* Set a fixed width and height for consistency */
+        width: 150px; 
+        height: 50px;
+        line-height: 50px; /* Vertically center the text */
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    }
+
+        .button-style:hover {
+            background: #0056b3;
+        }
+
+        /* Centering the shuffle button and index link */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <!-- The puzzle Title -->
     <h1>Free Pieces Puzzle</h1>
-    
 
+    <!-- Puzzle container -->
     <div id="puzzle-container">
-        <!-- Empty grid cells will be dynamically added here -->
+        <!-- Grid cells and pieces will be dynamically added here -->
         <div class="grid-cell" data-index="0"></div>
         <div class="grid-cell" data-index="1"></div>
         <div class="grid-cell" data-index="2"></div>
@@ -62,8 +111,9 @@
         <div class="grid-cell" data-index="8"></div>
     </div>
 
-    <!-- Puzzle pieces will be dynamically added here -->
+    <!-- Puzzle pieces container -->
     <div class="puzzle-pieces-container">
+        <!-- Pieces will be dynamically added here -->
         <div class="puzzle-piece" data-piece-index="0"></div>
         <div class="puzzle-piece" data-piece-index="1"></div>
         <div class="puzzle-piece" data-piece-index="2"></div>
@@ -74,12 +124,14 @@
         <div class="puzzle-piece" data-piece-index="7"></div>
         <div class="puzzle-piece" data-piece-index="8"></div>
     </div>
-    
-        <!-- The shuffle button -->
-<button id="shuffle-button" onclick="shufflePieces()">Shuffle</button>
-        <!-- The link to the Index page -->
-        <a href="{{ url_for('index') }}">Index</a>
-            <!-- Call the JavaScript file -->
-        <script src="{{ url_for('static', filename='js/free_pieces.js') }}"></script>
+
+    <!-- The shuffle button and index link -->
+    <div class="button-container">
+        <button id="shuffle-button" class="button-style" onclick="shufflePieces()">Melanger</button>
+        <a href="{{ url_for('index') }}" class="button-style">Accueil</a>
+    </div>
+
+    <!-- Call the JavaScript file -->
+    <script src="{{ url_for('static', filename='js/free_pieces.js') }}"></script>
 </body>
 </html>
