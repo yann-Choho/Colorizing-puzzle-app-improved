@@ -1,0 +1,6 @@
+Ressources
+
+Vidéos 
+Colorisation : https://www.youtube.com/watch?v=WXyeQeHUxpc&ab_channel=ComputingForAll
+Colorisation with GANs : https://www.youtube.com/watch?v=v88IUAsgfz0&ab_channel=CoderzDen
+
