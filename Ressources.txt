@@ -1,0 +1,10 @@
+Ressources
+
+Vidéos 
+Colorisation : https://www.youtube.com/watch?v=WXyeQeHUxpc&ab_channel=ComputingForAll
+Colab associé à cette vidéo : https://colab.research.google.com/drive/1BsqM7GBTtsyBixy2jsLGJNiSvp1ocpV7?usp=sharing
+Colorisation with GANs : https://www.youtube.com/watch?v=v88IUAsgfz0&ab_channel=CoderzDen
+
+Théorie sur les GANs
+Colorization Using ConvNet and GAN (Stanford uni) : http://cs231n.stanford.edu/reports/2017/pdfs/302.pdf
+
