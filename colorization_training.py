@@ -8,9 +8,6 @@ import torch.nn as nn
 import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, random_split
-# import matplotlib.pyplot as plt
-# import numpy as np
-# from PIL import Image
 import os
 #%%
 
@@ -38,17 +35,8 @@ class ColorizationNet(nn.Module):
 
 
 if __name__ == "__main__":
-
     # Set device
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-    # if torch.cuda.is_available():
-    #   print(torch.cuda.current_device())
-    #   print(torch.cuda.device(0))
-    #   print(torch.cuda.device_count())
-    #   print(torch.cuda.get_device_name(0))
-    # else:
-    #   print("No NVIDIA driver found. Using CPU")
 
     # %% Load the CIFAR-10 dataset
     # img_path=r"C:\Users\rayan\Documents\GitHub\Projet infra\images folder\color"

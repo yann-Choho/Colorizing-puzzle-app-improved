@@ -56,18 +56,14 @@ if __name__ == "__main__" :
     # Convert the image to grayscale
     gray_img = img.convert("L")
 
-    # Define the transformations
+    # Turn it into a tensor
     transform = transforms.Compose([
         transforms.ToTensor(),
     ])
 
-    # Apply the transformations
     img_tensor = transform(gray_img).unsqueeze(0)  # Add a batch dimension
 
-    # Ensure the model is in evaluation mode
-    model.eval()
-
-    # Move the image tensor to the device where your model is (likely 'cuda' if using GPU)
+    # Move the image tensor to the device where your model is
     img_tensor = img_tensor.to(device)
 
     # Get the model's output

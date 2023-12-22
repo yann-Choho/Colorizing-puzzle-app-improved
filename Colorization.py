@@ -80,7 +80,7 @@ if __name__=="__main__":
         return img.mean(dim=1, keepdim=True)
     
     # Training loop
-    EPOCHS = 1
+    EPOCHS = 40
     for epoch in range(EPOCHS):
         for i, (images, _) in enumerate(train_loader):
             grayscale_images = rgb_to_gray(images).to(device)
