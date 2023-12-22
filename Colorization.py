@@ -48,9 +48,6 @@ train_loader = DataLoader(dataset=train_subset,batch_size=1,num_workers=os.cpu_c
 
 test_loader = DataLoader(dataset=test_subset,batch_size=1,num_workers=os.cpu_count(),shuffle=True)
 
-transform = transforms.Compose([
-    transforms.ToTensor(),
-])
 
 if __name__=="__main__":
     # Define the colorization model
@@ -83,7 +80,7 @@ if __name__=="__main__":
         return img.mean(dim=1, keepdim=True)
     
     # Training loop
-    EPOCHS = 80
+    EPOCHS = 1
     for epoch in range(EPOCHS):
         for i, (images, _) in enumerate(train_loader):
             grayscale_images = rgb_to_gray(images).to(device)
@@ -121,7 +118,7 @@ if __name__=="__main__":
     # Convert the image to grayscale
     gray_img = img.convert("L")
         
-    # Define the transformations
+    # transform the gray image into a tensor
     transform = transforms.Compose([
         transforms.ToTensor(),
     ])
