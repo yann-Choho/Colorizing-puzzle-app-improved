@@ -6,7 +6,7 @@
 import torch
 # import torch.nn as nn
 # import torch.optim as optim
-from torchvision import datasets, transforms
+from torchvision import transforms
 # from torch.utils.data import DataLoader, random_split
 import matplotlib.pyplot as plt
 import numpy as np
@@ -49,7 +49,7 @@ if __name__ == "__main__" :
 
 
     # %%
-    # Open the image. (Keep your image in the current directory. In my case, the image was horse.jpg)
+    # Open the image.
     # img = Image.open(r"C:\Users\rayan\Documents\GitHub\Projet infra\images folder\screen.jpg")
     img = Image.open(r"C:\Users\Thomas\Downloads\Colorisation-d-images-via-le-machine-learning-dev_scraping\images folder\montagne_test.jpg")
 
