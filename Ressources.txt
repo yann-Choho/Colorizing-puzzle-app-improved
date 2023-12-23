@@ -5,6 +5,7 @@ Vidéos :
 Colorisation : https://www.youtube.com/watch?v=WXyeQeHUxpc&ab_channel=ComputingForAll
 Colab associé à cette vidéo : https://colab.research.google.com/drive/1BsqM7GBTtsyBixy2jsLGJNiSvp1ocpV7?usp=sharing
 Colorisation with GANs : https://www.youtube.com/watch?v=v88IUAsgfz0&ab_channel=CoderzDen
+GAN with pytorch : https://www.youtube.com/watch?v=_pIMdDWK5sc&t=525s&ab_channel=AssemblyAI
 
 Théorie sur les GANs : 
 
