@@ -15,3 +15,6 @@ Pratique sur les GANs:
 Image-Colorization : https://github.com/TengdaHan/Image-Colorization  Projet un peu gros, difficile à comprendre
 Image Colorization with U-net and GAN Tutorial : https://github.com/mberkay0/image-colorization Prometteur
 DCGAN Tutorial : https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html
+
+Repos Git GANs
+avec Keras : https://github.com/PartheshSoni/Image-colorization-using-GANs/blob/master/ImageColourization.ipynb
