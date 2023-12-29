@@ -3,12 +3,13 @@
 # imports
 
 #%%
-import torch
+import torch #requirement: pip install pytorch
 import torch.nn as nn
 import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, random_split
 import os
+import splitfolders #requirement: pip install split-folders  
 #%%
 
 
@@ -38,27 +39,35 @@ if __name__ == "__main__":
     # Set device
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    # %% Load the CIFAR-10 dataset
-    # img_path=r"C:\Users\rayan\Documents\GitHub\Projet infra\images folder\color"
-    img_path = r"C:\Users\Thomas\Downloads\Colorisation-d-images-via-le-machine-learning-dev_scraping\images folder\color_planes"
+    # %% Load the dataset, split it into train and test. Fix the seed to have the same split for everybody.
+    img_path=r"C:\Users\rayan\Documents\GitHub\Projet infra\images folder\color"
+    # img_path = r"C:\Users\Thomas\Downloads\Colorisation-d-images-via-le-machine-learning-dev_scraping\images folder\color_planes"
+    inp=img_path
+    output=r"C:\Users\rayan\Documents\GitHub\Projet infra\images folder\split"
+    
+    # splitfolders.ratio(inp, output=output, seed=1337, ratio=(.85, 0,0.15)) 
     # %%
 
-    # cette ligne indique la façon dont il faudra transformer les images.
-    data_transform = transforms.Compose([
+    # cette ligne indique la façon dont on transforme les images pour le dataset d'entraînement. On en profite pour effectuer de la data augmentation.
+    train_transform = transforms.Compose([
         transforms.TrivialAugmentWide(num_magnitude_bins=31),
         transforms.ToTensor()  # normalise les valeurs des pixels.
     ])
     # TrivialAugment est une méthode de Data Augmentation: on choisit une méthode d'augmentation parmi une sélection de méthodes triviales (baisse de luminosité, retournement de l'image, etc.), plus ou moins impactantes, et appliquées à un degré plus ou moins intense. num_magnitude bins, situé entre 1 et 31, augmente la probabilité d'avoir une transformation plus sérieuse et appliquée de façon plus intense.
 
-    full_dataset = datasets.ImageFolder(root=img_path, transform=data_transform, target_transform=None)
+    test_transform = transform = transforms.Compose([
+        transforms.ToTensor(),
+    ])
+
+    train_dataset = datasets.ImageFolder(root=output+"\\train", transform=train_transform)
+    test_dataset = datasets.ImageFolder(root=output+"\\test", transform=test_transform)
     # attention: pour le chemin menant aux images, ImageFolder attend un dossier comportant des sous-dossiers, un pour chaque classe. Pour cet exercice, il n'est pas question de classifier les images, il n'y aura donc qu'un seul sous-dossier
     # %%
-    train_subset, test_subset = random_split(full_dataset, [0.8, 0.2])
-
-    train_loader = DataLoader(dataset=train_subset, batch_size=1, num_workers=os.cpu_count(), shuffle=True)
+   
+    train_loader = DataLoader(dataset=train_dataset, batch_size=1, num_workers=os.cpu_count(), shuffle=True)
     # num_workers=os.cpu_count() pour que le DataLoader puisse utiliser un maximum de processeurs pour charger les données.
 
-    test_loader = DataLoader(dataset=test_subset, batch_size=1, num_workers=os.cpu_count(), shuffle=True)
+    test_loader = DataLoader(dataset=test_dataset, batch_size=1, num_workers=os.cpu_count(), shuffle=True)
 
     transform = transforms.Compose([
         transforms.ToTensor(),

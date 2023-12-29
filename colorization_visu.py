@@ -50,8 +50,8 @@ if __name__ == "__main__" :
 
     # %%
     # Open the image.
-    # img = Image.open(r"C:\Users\rayan\Documents\GitHub\Projet infra\images folder\screen.jpg")
-    img = Image.open(r"C:\Users\Thomas\Downloads\Colorisation-d-images-via-le-machine-learning-dev_scraping\images folder\montagne_test.jpg")
+    img = Image.open(r"C:\Users\rayan\Documents\GitHub\Projet infra\images folder\screen.jpg")
+    # img = Image.open(r"C:\Users\Thomas\Downloads\Colorisation-d-images-via-le-machine-learning-dev_scraping\images folder\montagne_test.jpg")
 
     # Convert the image to grayscale
     gray_img = img.convert("L")
