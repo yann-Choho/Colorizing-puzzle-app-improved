@@ -2,9 +2,9 @@
 
 ## Advanced Machine Learning Project (3A)
 
-<center><img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/LOGO-ENSAE.png/480px-LOGO-ENSAE.png"></center>
+<center><img src = "https://fr.m.wikipedia.org/wiki/Fichier:LOGO-ENSAE.png"></center>
 
-## Topic : Deep learning models robust to adversarial attacks
+## Topic : Machine Learning-Driven Image Colorization, a Puzzle Quest to Get Your Image Colorful 🎨
 
 ### Realised by : 
 
