@@ -23,8 +23,8 @@ cols = 3
 
 # Initiate a class for the puzzle pieces
 class PuzzlePiece:
-    def __init__(self, id, image, order, width, height):
-        self.id = id # correct rank of the piece in the puzzle
+    def __init__(self, id: int, image: str, order: int, width: float, height: float):
+        self.id = id  # correct rank of the piece in the puzzle
         self.image = image # for display
         self.order = order # actual rank of the piece in the puzzle
         self.width = width # for display
