@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# imports
+"""
+This code is here to show how the model colorizes an image.
+Run colorization_training first, expecially the splitfolders part, if you want to see it run on the leftover images from the training dataset.
 
+"""
 #%%
 import torch
 # import torch.nn as nn
@@ -31,8 +34,6 @@ path_params = 'modele_1.pth'
 model.load_state_dict(torch.load(path_params))
 
 print("Model set up with optimal parameters provided")
-
-
 # %%
 def imshow(img):
     # Convert from Tensor image and display
@@ -42,66 +43,64 @@ def imshow(img):
         plt.imshow(npimg, cmap='gray')
     else:
         plt.imshow(np.transpose(npimg, (1, 2, 0)))
-#%%
-# Open the image.
-# img = Image.open(r"C:\Users\rayan\Documents\GitHub\Projet infra\images folder\screen.jpg")
-# img = Image.open(r"C:\Users\Thomas\Downloads\Colorisation-d-images-via-le-machine-learning-dev_scraping\images folder\montagne_test.jpg")
-output=r"C:\Users\rayan\Documents\GitHub\Projet infra\images folder\split"    
+#%% showing the colorization of a random image from our database.
 
-images = os.listdir(output+"\\test\color_images")
-
-for i in range(len(images)):
+output=r".\images_folder\split"
+try:
+    images = os.listdir(output+"\\test\color_images") #This folder is created if colorization_training is ran.
+except FileNotFoundError:
+    images=[]
+    
+if len(images)>0:
+    i=np.random.randint(0,len(images))
+    
     img_str = os.path.join(output+"\\test\color_images",images[i])
     # Convert the image to grayscale
     img = Image.open(img_str)
     
     gray_img = img.convert("L")
-
+    
     # Turn it into a tensor
     transform = transforms.Compose([
         transforms.ToTensor(),
     ])
-
+    
     img_tensor = transform(gray_img).unsqueeze(0)  # Add a batch dimension
-
+    
     # Move the image tensor to the device where your model is
     img_tensor = img_tensor.to(device)
-
+    
     # Get the model's output
     with torch.no_grad():
         colorized_tensor = model(img_tensor)
-
+    
     # Convert the tensor back to an image
     colorized_img = transforms.ToPILImage()(colorized_tensor.squeeze(0).cpu())
+      
     
-    
-    colorized_img.save(img_str)
-    
-    
-
     # Plotting the original, grayscale, and colorized images side-by-side
-fig, ax = plt.subplots(1, 3, figsize=(18, 6))  # Create a figure with 1 row and 3 columns
+    fig, ax = plt.subplots(1, 3, figsize=(18, 6))
+    
+    # Display original color image
+    ax[0].imshow(img)
+    ax[0].set_title("Original Color Image")
+    ax[0].axis('off')  # Hide axes
+    
+    # Display grayscale image
+    ax[1].imshow(gray_img, cmap='gray')  # Since it's grayscale, use cmap='gray'
+    ax[1].set_title("Grayscale Image")
+    ax[1].axis('off')  # Hide axes
+    
+    # Display colorized image
+    ax[2].imshow(colorized_img)
+    ax[2].set_title("Colorized Image")
+    ax[2].axis('off')  # Hide axes
+    
+    plt.tight_layout()  # Adjust spacing
+    plt.show()
 
-# Display original color image
-ax[0].imshow(img)
-ax[0].set_title("Original Color Image")
-ax[0].axis('off')  # Hide axes
-
-# Display grayscale image
-ax[1].imshow(gray_img, cmap='gray')  # Since it's grayscale, use cmap='gray'
-ax[1].set_title("Grayscale Image")
-ax[1].axis('off')  # Hide axes
-
-# Display colorized image
-ax[2].imshow(colorized_img)
-ax[2].set_title("Colorized Image")
-ax[2].axis('off')  # Hide axes
-
-plt.tight_layout()  # Adjust spacing
-plt.show()
-
-#%%
-img = Image.open(r"C:\Users\rayan\Documents\GitHub\Projet infra\images folder\screen5.png")
+#%% showing the colorization of a random image from the Internet.
+img = Image.open(r".\images folder\Fleurs-des-champs.jpeg")
     
 gray_img = img.convert("L")
 
@@ -110,19 +109,17 @@ transform = transforms.Compose([
     transforms.ToTensor(),
 ])
 
-img_tensor = transform(gray_img).unsqueeze(0)  # Add a batch dimension
-
-# Move the image tensor to the device where your model is
+img_tensor = transform(gray_img).unsqueeze(0)  
 img_tensor = img_tensor.to(device)
 
 # Get the model's output
 with torch.no_grad():
     colorized_tensor = model(img_tensor)
 
-# Convert the tensor back to an image
+
 colorized_img = transforms.ToPILImage()(colorized_tensor.squeeze(0).cpu())
 
-    # Plotting the original, grayscale, and colorized images side-by-side
+# Plotting the original, grayscale, and colorized images side-by-side
 fig, ax = plt.subplots(1, 3, figsize=(18, 6))  # Create a figure with 1 row and 3 columns
 
 # Display original color image

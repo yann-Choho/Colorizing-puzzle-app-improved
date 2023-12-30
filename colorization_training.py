@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# imports
+"""
+READ FIRST ! 
 
-#%%
+For this code to work, you first have to download and unzip the color images into the \images_folder\color folder.
+
+"""
+
+#%% imports
 import torch #requirement: pip install pytorch. Version depends on your build, if unsure, just install pytorch and it will run on the cpu instead of the gpu. 
 import torch.nn as nn
 import torch.optim as optim
@@ -10,10 +15,7 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import os
 import splitfolders #requirement: pip install split-folders==0.5.1
-#%%
-
-
-# Define the colorization model
+#%% Define the colorization model
 class ColorizationNet(nn.Module):
     def __init__(self):
         super(ColorizationNet, self).__init__()
@@ -38,23 +40,19 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 #%% Load the dataset, split it into train and test. Fix the seed to have the same split for everybody.
-    img_path=r"C:\Users\rayan\Documents\GitHub\Projet infra\images folder\color"
+    img_path=r".\images_folder\color"
     # img_path = r"C:\Users\Thomas\Downloads\Colorisation-d-images-via-le-machine-learning-dev_scraping\images folder\color_planes"
     inp=img_path
-    output=r"C:\Users\rayan\Documents\GitHub\Projet infra\images folder\split"
+    output=r".\images_folder\split"
     
     splitfolders.ratio(inp, output=output, seed=123, ratio=(.85, 0,0.15)) 
-    
+# %% Setup the transformations for the training and testing dataset.
 
-
-# %%
-
-    # cette ligne indique la façon dont on transforme les images pour le dataset d'entraînement. On en profite pour effectuer de la data augmentation.
     train_transform = transforms.Compose([
         transforms.TrivialAugmentWide(num_magnitude_bins=31),
-        transforms.ToTensor()  # normalise les valeurs des pixels.
+        transforms.ToTensor()  
     ])
-    # TrivialAugment est une méthode de Data Augmentation: on choisit une méthode d'augmentation parmi une sélection de méthodes triviales (baisse de luminosité, retournement de l'image, etc.), plus ou moins impactantes, et appliquées à un degré plus ou moins intense. num_magnitude bins, situé entre 1 et 31, augmente la probabilité d'avoir une transformation plus sérieuse et appliquée de façon plus intense.
+    # TrivialAugment is a Data Augmentation method: an augmentation method is chosed in a range of trivial augmentations (change in lighting, image flip, etc.), applied at a given magnitude. Read more here: https://pytorch.org/vision/main/generated/torchvision.transforms.TrivialAugmentWide.html
 
     test_transform = transform = transforms.Compose([
         transforms.ToTensor(),
@@ -62,18 +60,12 @@ if __name__ == "__main__":
 
     train_dataset = datasets.ImageFolder(root=output+"\\train", transform=train_transform)
     test_dataset = datasets.ImageFolder(root=output+"\\test", transform=test_transform)
-    # attention: pour le chemin menant aux images, ImageFolder attend un dossier comportant des sous-dossiers, un pour chaque classe. Pour cet exercice, il n'est pas question de classifier les images, il n'y aura donc qu'un seul sous-dossier
+    # ImageFolder expects a folder with subfolders, that are normally used to get the number of classification bins. Here, there is no classification, hence there is only one subfolder.
     # %%
-   
     train_loader = DataLoader(dataset=train_dataset, batch_size=1, num_workers=os.cpu_count(), shuffle=True)
-    # num_workers=os.cpu_count() pour que le DataLoader puisse utiliser un maximum de processeurs pour charger les données.
+    # num_workers=os.cpu_count() allows the DataLoader to use as much cpu cores as needed.
 
     test_loader = DataLoader(dataset=test_dataset, batch_size=1, num_workers=os.cpu_count(), shuffle=True)
-
-    transform = transforms.Compose([
-        transforms.ToTensor(),
-    ])
-
 
     model = ColorizationNet().to(device)
 
@@ -112,8 +104,7 @@ if __name__ == "__main__":
     # save model parameters
 
     # path of the file
-    # à changer + tard : remplacer par le chemin du projet pour avoir le fichier à disposition
-    chemin_fichier_params = 'modele_1.pth' # avec cette syntaxe, le fichier est créé là où on se situe
+    chemin_fichier_params = 'modele_1.pth' 
 
     # save parameters in this file
     torch.save(model.state_dict(), chemin_fichier_params)
