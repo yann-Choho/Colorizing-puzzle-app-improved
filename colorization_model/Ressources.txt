@@ -1,0 +1,21 @@
+Ressources
+
+Vidéos :
+
+Colorisation : https://www.youtube.com/watch?v=WXyeQeHUxpc&ab_channel=ComputingForAll
+Colab associé à cette vidéo : https://colab.research.google.com/drive/1BsqM7GBTtsyBixy2jsLGJNiSvp1ocpV7?usp=sharing
+Colorisation with GANs : https://www.youtube.com/watch?v=v88IUAsgfz0&ab_channel=CoderzDen
+GAN with pytorch : https://www.youtube.com/watch?v=_pIMdDWK5sc&t=525s&ab_channel=AssemblyAI
+
+Théorie sur les GANs : 
+
+Colorization Using ConvNet and GAN (Stanford uni) : http://cs231n.stanford.edu/reports/2017/pdfs/302.pdf
+
+Pratique sur les GANs: 
+
+Image-Colorization : https://github.com/TengdaHan/Image-Colorization  Projet un peu gros, difficile à comprendre
+Image Colorization with U-net and GAN Tutorial : https://github.com/mberkay0/image-colorization Prometteur
+DCGAN Tutorial : https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html
+
+Repos Git GANs
+avec Keras : https://github.com/PartheshSoni/Image-colorization-using-GANs/blob/master/ImageColourization.ipynb
