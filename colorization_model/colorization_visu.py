@@ -28,9 +28,10 @@ model = ColorizationNet().to(device)
 
 
 # load optimal parameters for the model
-
+print(os.getcwd())
+#%%
 # chemin d' acces a changer selon besoins
-path_params = 'modele_1.pth'
+path_params = os.path.dirname(os.getcwd())
 model.load_state_dict(torch.load(path_params))
 
 print("Model set up with optimal parameters provided")
@@ -45,7 +46,7 @@ def imshow(img):
         plt.imshow(np.transpose(npimg, (1, 2, 0)))
 #%% showing the colorization of a random image from our database.
 
-output=r".\images_folder\split"
+output=r"..\images_folder\split"
 try:
     images = os.listdir(output+"\\test\color_images") #This folder is created if colorization_training is ran.
 except FileNotFoundError:
