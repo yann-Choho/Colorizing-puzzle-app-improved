@@ -18,7 +18,8 @@ import os
 
 from colorization_training import ColorizationNet
 #%%
-
+parent_path=os.path.dirname(os.getcwd())
+#%%
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -28,10 +29,7 @@ model = ColorizationNet().to(device)
 
 
 # load optimal parameters for the model
-print(os.getcwd())
-#%%
-# chemin d' acces a changer selon besoins
-path_params = os.path.dirname(os.getcwd())
+path_params = os.path.join(parent_path,'modele_1.pth')
 model.load_state_dict(torch.load(path_params))
 
 print("Model set up with optimal parameters provided")
@@ -46,7 +44,7 @@ def imshow(img):
         plt.imshow(np.transpose(npimg, (1, 2, 0)))
 #%% showing the colorization of a random image from our database.
 
-output=r"..\images_folder\split"
+output=os.path.join(parent_path,r"images_folder\split")
 try:
     images = os.listdir(output+"\\test\color_images") #This folder is created if colorization_training is ran.
 except FileNotFoundError:
@@ -101,7 +99,7 @@ if len(images)>0:
     plt.show()
 
 #%% showing the colorization of a random image from the Internet.
-img = Image.open(r".\images folder\Fleurs-des-champs.jpeg")
+img = Image.open(os.path.join(parent_path,r"images_folder\Fleurs-des-champs.jpeg"))
     
 gray_img = img.convert("L")
 
