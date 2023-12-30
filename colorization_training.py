@@ -3,13 +3,13 @@
 # imports
 
 #%%
-import torch #requirement: pip install pytorch
+import torch #requirement: pip install pytorch. Version depends on your build, if unsure, just install pytorch and it will run on the cpu instead of the gpu. 
 import torch.nn as nn
 import torch.optim as optim
 from torchvision import datasets, transforms
-from torch.utils.data import DataLoader, random_split
+from torch.utils.data import DataLoader
 import os
-import splitfolders #requirement: pip install split-folders  
+import splitfolders #requirement: pip install split-folders==0.5.1
 #%%
 
 
@@ -23,10 +23,8 @@ class ColorizationNet(nn.Module):
         self.conv3 = nn.Conv2d(64, 128, kernel_size=5, stride=1, padding=4,
                                dilation=2)  # increase of feature maps to capture more complex patterns
         self.conv4 = nn.Conv2d(128, 3, kernel_size=5, stride=1, padding=4, dilation=2)  # 3 channels: RGB
-        self.dropout = nn.Dropout(0.1)
 
     def forward(self, x):
-        x = self.dropout(x)
         x = nn.functional.relu(self.conv1(x))
         x = nn.functional.relu(self.conv2(x))
         x = nn.functional.relu(self.conv3(x))
@@ -39,14 +37,17 @@ if __name__ == "__main__":
     # Set device
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    # %% Load the dataset, split it into train and test. Fix the seed to have the same split for everybody.
+#%% Load the dataset, split it into train and test. Fix the seed to have the same split for everybody.
     img_path=r"C:\Users\rayan\Documents\GitHub\Projet infra\images folder\color"
     # img_path = r"C:\Users\Thomas\Downloads\Colorisation-d-images-via-le-machine-learning-dev_scraping\images folder\color_planes"
     inp=img_path
     output=r"C:\Users\rayan\Documents\GitHub\Projet infra\images folder\split"
     
-    # splitfolders.ratio(inp, output=output, seed=1337, ratio=(.85, 0,0.15)) 
-    # %%
+    splitfolders.ratio(inp, output=output, seed=123, ratio=(.85, 0,0.15)) 
+    
+
+
+# %%
 
     # cette ligne indique la façon dont on transforme les images pour le dataset d'entraînement. On en profite pour effectuer de la data augmentation.
     train_transform = transforms.Compose([
@@ -87,7 +88,7 @@ if __name__ == "__main__":
 
 
     # Training loop
-    EPOCHS = 40
+    EPOCHS = 15
     for epoch in range(EPOCHS):
         for i, (images, _) in enumerate(train_loader):
             grayscale_images = rgb_to_gray(images).to(device)
@@ -118,4 +119,5 @@ if __name__ == "__main__":
     torch.save(model.state_dict(), chemin_fichier_params)
 
     print("Parameters saved")
+
 
