@@ -13,6 +13,10 @@ from flask import Flask, render_template
 from PIL import Image
 import io
 import random
+# Requirements for the colorization model: 
+import torch
+from torchvision import transforms
+from colorization_training import ColorizationNet #needs colorization_training near app.py. 
 
 app = Flask(__name__)
 
@@ -20,7 +24,53 @@ app = Flask(__name__)
 rows = 3
 cols = 3
 
+# Call the model and set it up.
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+model = ColorizationNet().to(device)
+
+
+# load optimal parameters for the model
+path_params = 'modele_1.pth' 
+model.load_state_dict(torch.load(path_params))
+
+print("Model set up with optimal parameters provided")
+
+def colorization(img) -> Image:
+    """
+    Colorizes a black and white image.
+
+    Parameters
+    ----------
+    img : a PIL Image, or the string of the path of the image
+
+    Returns
+    -------
+    Image
+        The colorized image, stored as a PIL Image.
+    """
+    
+    if type(img)==str:
+        true_img=Image.open(img)
+    else:
+        true_img=img 
+    transform = transforms.Compose([
+    transforms.ToTensor(),
+    ])
+    
+    img_tensor = transform(true_img).unsqueeze(0)  
+    img_tensor = img_tensor.to(device)
+    
+    # Get the model's output
+    with torch.no_grad():
+        colorized_tensor = model(img_tensor)
+    
+    
+    colorized_img = transforms.ToPILImage()(colorized_tensor.squeeze(0).cpu())
+    return colorized_img
+
+    
+    
 # Initiate a class for the puzzle pieces
 class PuzzlePiece:
     def __init__(self, id: int, image: str, order: int, width: float, height: float):
