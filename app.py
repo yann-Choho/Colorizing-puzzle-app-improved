@@ -31,7 +31,7 @@ model = ColorizationNet().to(device)
 
 
 # load optimal parameters for the model
-path_params = 'modele_1.pth' 
+path_params = 'model1.pth' 
 model.load_state_dict(torch.load(path_params, map_location=device))
 
 print("Model set up with optimal parameters provided")
