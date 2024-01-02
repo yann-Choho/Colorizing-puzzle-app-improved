@@ -1,5 +1,9 @@
 # Colorisation d'images via le machine learning
 
+## Description of the puzzle app
+
+Explain the puzzle (readme preparing merging)
+
 ## How to run the app
 First, build the docker image by running the following command in a terminal :
 
