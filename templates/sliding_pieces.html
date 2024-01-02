@@ -7,114 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles_jeu.css') }}">
-    <style>
-        /* ...Other styles... */
-
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            justify-content: flex-start;
-            background-image: url("{{ url_for('static', filename='images/background2.jpg') }}");
-            background-size: cover; /* Cover the entire viewport */
-            background-position: center; /* Center the image in the viewport */
-            background-repeat: no-repeat; /* Do not repeat the image */
-            background-attachment: fixed; /* Optional: keep the background image fixed in place */
-        }
-
-        #puzzle-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    width: 100%;
-    max-width: 300px; /* Reduced max-width */
-    margin-left: auto;
-    margin-right: auto;
-    position: absolute;
-    top: 50%;
-    left: 30%;
-    transform: translate(-50%, -50%);
-    z-index: 1; 
-}
-
-.puzzle-piece {
-    width: 100px; /* Adjusted for smaller size */
-    height: 100px; /* Adjusted for smaller size */
-    position: relative;
-}
-
-.puzzle-piece::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-size: cover;
-    transition: transform 0.2s ease-in-out;
-}
-
-        .puzzle-piece.empty::before {
-            background: none;
-        }
-
-        /* ...Other styles... */
-
-/* ...Other styles... */
-
-#button-container {
-    position: fixed;
-    bottom: 10px; /* Distance from the bottom */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Offset the container by half its width */
-    text-align: center;
-    width: 100%; /* Ensure it spans the full width if needed */
-}
-
-
-
-    .button-style {
-        padding: 0px 20px; /* Adjust padding to control the size */
-        margin: 0 5px;
-        text-decoration: none;
-        background: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        display: inline-block; /* Important for anchor to behave like a button */
-        text-align: center;
-        /* Set a fixed width and height for consistency */
-        width: 150px; 
-        height: 50px;
-        line-height: 50px; /* Vertically center the text */
-        box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    }
-
-    .button-style:hover {
-        background: #0056b3;
-    }
-
-    #titre_puzzle {
-    width: 100%; /* Full width */
-    position: absolute; /* Absolute positioning */
-    top: 0; /* At the very top of the page */
-    left: 0; /* Align to the left edge */
-    right: 0; /* Align to the right edge */
-    text-align: center; /* Center the text horizontally */
-    padding: 20px 0; /* Add some padding at the top and bottom */
-    z-index: 2; /* Make sure it's above other elements */
-}
-
-/* ...Other styles... */
-
-        /* ...Other styles... */
-
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_sliding_piece.css') }}">
 </head>
 
 
@@ -139,15 +32,33 @@
     
 <!-- ...Other HTML... -->
 
-    <!-- The shuffle button / link to Index page -->
-    <div id="button-container">
-        <button id="shuffle-button" class="button-style" onclick="shufflePieces()">Melanger</button>
-        <a href="{{ url_for('index') }}" id="index-link" class="button-style">Accueil</a>
-    </div>
+<!-- Le bouton pour activer l'upload d'image -->
+<div id="button-container">
+    <button id="shuffle-button" class="button-style" onclick="shufflePieces()">Melanger</button>
+    <a href="{{ url_for('index') }}" id="index-link" class="button-style">Accueil</a>
+    <!-- Bouton pour activer le formulaire d'upload d'image -->
+    <button class="button-style" onclick="document.getElementById('imageUpload').click()">Importer mon image</button>
+    <!-- ... Autres boutons ... -->
+    <a href="{{ url_for('select_image') }}" class="button-style">Choisir une Image</a>    
+    <button id="downloadButton" class="button-style" style="display: none;" onclick="downloadImage()">Télécharger l'Image</button>
+</div>
 
-<!-- ...Other HTML... -->
+<!-- Formulaire d'upload d'image (masqué) -->
+<form id="imageUploadForm" action="{{ url_for('upload_image_route') }}" method="post" enctype="multipart/form-data" style="display: none;">
+    <input type="file" id="imageUpload" name="file" onchange="submitImageUploadForm()" required>
+    <!-- Pas besoin de bouton 'submit' ici car le formulaire sera soumis par JavaScript -->
+</form>
 
-    
+
+<script type="text/javascript">
+    function submitImageUploadForm() {
+        // Soumettre le formulaire d'upload d'image lorsque l'utilisateur sélectionne un fichier
+        document.getElementById('imageUploadForm').submit();
+    }
+</script>
+
+<!-- ... other HTML ... -->
+
     <!-- The title of the page -->
     <div id="titre_puzzle">
             <h1>Sliding Puzzle</h1>

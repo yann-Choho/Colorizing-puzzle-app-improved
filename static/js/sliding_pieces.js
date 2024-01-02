@@ -15,7 +15,7 @@ initializePuzzlePieces();
 document.addEventListener('DOMContentLoaded', function () {
 
 // The grid of the puzzle
-    const puzzleContainer = document.getElementById('puzzle-container');
+const puzzleContainer = document.getElementById('puzzle-container');
 
 // Check if all the non-empty pieces' id and order are consistent
 function isVictory() {
@@ -87,43 +87,61 @@ function isVictory() {
 });
 
 
-// Function called by the html button "Shuffle"
-function shufflePieces() {
-    // Check if puzzlePieces is defined
-    if (!puzzlePieces) {
-        console.error('Error: puzzlePieces is not defined.');
-        return;
-    }
-    // Special case : shuffle after a victory
-    // For simplicity I just redefined the same victory function
-    function isVictory() {
-        const orderedPieces = Array.from(puzzlePieces).sort((a, b) => a.order - b.order);
-        const isCorrectOrder = orderedPieces.every((piece, index) => {
-            const expectedOrder = parseInt(piece.dataset.order);
-            const actualOrder = index;
-            console.log(`Piece ${piece.id}: Expected Order: ${expectedOrder}, Actual Order: ${actualOrder}`);
-            return expectedOrder === actualOrder;
-        });
+    // Function called by the html button "Shuffle"
+    function shufflePieces() {
+        // Check if puzzlePieces is defined
+        // Sélectionnez toutes les pièces du puzzle
+        let puzzlePieces = document.querySelectorAll('.puzzle-piece');
 
-        console.log('isCorrectOrder:', isCorrectOrder);
+        // Convertissez la NodeList en tableau pour faciliter le mélange
+        let piecesArray = Array.from(puzzlePieces);
 
-        return isCorrectOrder;
-    }
-    
-     if (isVictory()) {
-        // Reset any victory-related changes (Color --> BW)
-        puzzlePieces.forEach(piece => {
-            piece.style.backgroundImage = `url('/static/images/sliced_${piece.dataset.row}_${piece.dataset.col}.png')`;
-            piece.style.backgroundSize = 'cover';
+        // Mélangez les pièces en utilisant l'algorithme Fisher-Yates
+        for (let i = piecesArray.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1)); // Nombre aléatoire entre 0 et i
 
-            // If piece has id=0, set it to be a blank cell
-            if (piece.dataset.id === '0') {
-                piece.style.backgroundImage = 'none'; // Set it to be empty
-                // You can also set a background color or other styles to represent a blank cell
-            }
-        });
-    }
-    
+            // Échangez les pièces
+            [piecesArray[i].style.order, piecesArray[j].style.order] = [piecesArray[j].style.order, piecesArray[i].style.order];
+        }
+        // Special case : shuffle after a victory
+        let downloadButton = document.getElementById('downloadButton');
+        if (downloadButton) {
+            downloadButton.style.display = 'none';
+        }
+
+
+// Fonction pour télécharger l'image
+function downloadImage() {
+    // URL directe vers l'image colorisée stockée dans /static/images
+    const downloadUrl = '/static/images/colorized_image.png';
+
+    // Crée un élément 'a' pour déclencher le téléchargement
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = 'colorized_image.png'; // Nom du fichier à télécharger
+
+    // Simule un clic sur le lien pour déclencher le téléchargement
+    document.body.appendChild(link);
+    link.click();
+
+    // Nettoyage : Supprime le lien après le téléchargement
+    document.body.removeChild(link);
+}
+
+// Check if victory is achieved
+if (isVictory()) {
+    // Affichez l'image colorisée pour chaque pièce du puzzle
+    puzzlePieces.forEach(piece => {
+        const row = parseInt(piece.dataset.row);
+        const col = parseInt(piece.dataset.col);
+        piece.style.backgroundImage = `url('/static/images/sliced_color_${row}_${col}.png')`;
+        piece.style.backgroundSize = 'cover';
+    });
+
+    // Afficher le bouton de téléchargement
+    document.getElementById('downloadButton').style.display = 'block';
+}
+
     // The main piece movement mechanism
     // but inside the ShufflePieces function
         function swapPieces(piece1, empty) {

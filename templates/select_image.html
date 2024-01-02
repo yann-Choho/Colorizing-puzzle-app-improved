@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select an Image for the Puzzle</title>
+    <link rel="stylesheet" href="../static/css/style_select_image.css">
+</head>
+<body>
+    <h1>Select an Image for the Puzzle</h1>
+    <div class="image-gallery">
+        {% for image in images %}
+        <div class="image-item">
+            <img src="{{ url_for('static', filename='images/examples/' + image) }}" alt="Puzzle Image">
+            <button onclick="selectImage('{{ image }}')">Select</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <a href="/" class="back-link">Retour à l'accueil</a>
+
+
+    <script src="../static/js/scripts_select_image.js"></script>
+
+</body>
+</html>
