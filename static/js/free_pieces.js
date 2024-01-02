@@ -186,4 +186,22 @@ function updatePuzzle() {
     
 });
 
+function downloadColorizedImage() {
+    // URL directe vers l'image colorisée stockée dans /static/images
+    const downloadUrl = '/static/images/colorized_image.png';
+
+    // Crée un élément 'a' pour déclencher le téléchargement
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = 'colorized.png'; // Nom du fichier à télécharger
+
+    // Simule un clic sur le lien pour déclencher le téléchargement
+    document.body.appendChild(link);
+    link.click();
+
+    // Nettoyage : Supprime le lien après le téléchargement
+    document.body.removeChild(link);
+}
+
+
 

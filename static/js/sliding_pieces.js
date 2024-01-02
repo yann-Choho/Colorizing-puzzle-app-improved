@@ -31,7 +31,33 @@ function isVictory() {
 
     return isCorrectOrder;
 }
+function submitImageUploadForm() {
+    // Vérifiez si un fichier a été sélectionné
+    const input = document.getElementById('imageUpload');
+    if (input.files.length > 0) {
+        // Créez un FormData et ajoutez le fichier
+        const formData = new FormData();
+        formData.append('file', input.files[0]);
 
+        // Utilisez fetch API pour envoyer le fichier
+        fetch('/upload-image', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            // Vérifiez que la réponse du serveur est ok (statut HTTP 200-299)
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            // Recharger la page après l'upload réussi
+            window.location.reload();
+        })
+        .catch(error => {
+            // Gérez les erreurs de réseau ou les erreurs de parsing JSON ici
+            console.error('Error:', error);
+        });
+    }
+}
 // Specify what happens when a piece is (left) clicked
     puzzlePieces.forEach(piece => {
         piece.addEventListener('click', function () {
@@ -104,10 +130,7 @@ function isVictory() {
             [piecesArray[i].style.order, piecesArray[j].style.order] = [piecesArray[j].style.order, piecesArray[i].style.order];
         }
         // Special case : shuffle after a victory
-        let downloadButton = document.getElementById('downloadButton');
-        if (downloadButton) {
-            downloadButton.style.display = 'none';
-        }
+
 
 
 // Fonction pour télécharger l'image
@@ -168,4 +191,20 @@ if (isVictory()) {
     }
 
    
+}
+function downloadColorizedImage() {
+    // URL directe vers l'image colorisée stockée dans /static/images
+    const downloadUrl = '/static/images/colorized_image.png';
+
+    // Crée un élément 'a' pour déclencher le téléchargement
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = 'colorized.png'; // Nom du fichier à télécharger
+
+    // Simule un clic sur le lien pour déclencher le téléchargement
+    document.body.appendChild(link);
+    link.click();
+
+    // Nettoyage : Supprime le lien après le téléchargement
+    document.body.removeChild(link);
 }

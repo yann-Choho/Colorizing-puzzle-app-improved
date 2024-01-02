@@ -40,12 +40,13 @@
     <button class="button-style" onclick="document.getElementById('imageUpload').click()">Importer mon image</button>
     <!-- ... Autres boutons ... -->
     <a href="{{ url_for('select_image') }}" class="button-style">Choisir une Image</a>    
-    <button id="downloadButton" class="button-style" style="display: none;" onclick="downloadImage()">Télécharger l'Image</button>
+    <button id="downloadButton" class="button-style" onclick="downloadColorizedImage()">Télécharger l'Image</button>
+
 </div>
 
 <!-- Formulaire d'upload d'image (masqué) -->
 <form id="imageUploadForm" action="{{ url_for('upload_image_route') }}" method="post" enctype="multipart/form-data" style="display: none;">
-    <input type="file" id="imageUpload" name="file"  required>
+    <input type="file" id="imageUpload" name="file" onchange="submitImageUploadForm()" required>
     <!-- Pas besoin de bouton 'submit' ici car le formulaire sera soumis par JavaScript -->
 </form>
 
