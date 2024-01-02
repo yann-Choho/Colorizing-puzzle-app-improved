@@ -40,7 +40,7 @@ def load_model(model_path):
     return model
 
 # Load the model
-model = load_model('modele1.pth')  # TODO : put it in folder colorization model
+model = load_model('model1.pth')  # TODO : put it in folder colorization model
 
 # Function to colorize the image
 def colorize_image(image_path, model, output_format='png'):
