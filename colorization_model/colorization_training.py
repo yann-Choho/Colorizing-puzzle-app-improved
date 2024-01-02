@@ -104,10 +104,10 @@ if __name__ == "__main__":
     # save model parameters
 
     # path of the file
-    chemin_fichier_params = 'modele_1.pth' 
+    params_file_path = 'model1.pth' 
 
     # save parameters in this file
-    torch.save(model.state_dict(), chemin_fichier_params)
+    torch.save(model.state_dict(), params_file_path)
 
     print("Parameters saved")
 
