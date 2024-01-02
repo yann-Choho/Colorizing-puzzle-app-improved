@@ -5,7 +5,7 @@
 # Each puzzle page (sliding / free) has its own :
     # .html to specify display
     # .js to specify interactive content 
-# The .css is common
+    # The .css is common
 
 
 # Requirements
@@ -35,7 +35,7 @@ from colorization_training import ColorizationNet
 # Function to load the model
 def load_model(model_path):
     model = ColorizationNet()
-    model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load(model_path, map_location=torch.device))
     model.eval()
     return model
 
@@ -251,4 +251,4 @@ def free_pieces():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=8000, debug=True)
