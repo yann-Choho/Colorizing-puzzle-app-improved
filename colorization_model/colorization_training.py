@@ -15,6 +15,8 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import os
 import splitfolders #requirement: pip install split-folders==0.5.1
+from PIL import Image # added
+
 #%% Define the colorization model
 class ColorizationNet(nn.Module):
     def __init__(self):
@@ -75,7 +77,7 @@ if __name__ == "__main__":
 
 
     # Convert RGB image to grayscale
-    def rgb_to_gray(img):
+    def rgb_to_gray(img : Image.Image) -> Image.Image:
         return img.mean(dim=1, keepdim=True)
 
 
