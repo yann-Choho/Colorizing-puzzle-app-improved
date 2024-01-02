@@ -45,7 +45,7 @@
 
 <!-- Formulaire d'upload d'image (masqué) -->
 <form id="imageUploadForm" action="{{ url_for('upload_image_route') }}" method="post" enctype="multipart/form-data" style="display: none;">
-    <input type="file" id="imageUpload" name="file" onchange="submitImageUploadForm()" required>
+    <input type="file" id="imageUpload" name="file"  required>
     <!-- Pas besoin de bouton 'submit' ici car le formulaire sera soumis par JavaScript -->
 </form>
 

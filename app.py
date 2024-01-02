@@ -35,7 +35,7 @@ from colorization_training import ColorizationNet
 # Function to load the model
 def load_model(model_path):
     model = ColorizationNet()
-    model.load_state_dict(torch.load(model_path, map_location=torch.device))
+    model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
     model.eval()
     return model
 
@@ -216,6 +216,62 @@ def create_puzzle(base_image_path, base_image_color_path, rows=rows, cols=cols):
 
 ##### THE DIFFERENTE ROUTES OF THE FLASK APP #####
 
+
+    
+# Menu 
+@app.route('/')
+def index():
+    return render_template('Index.html')
+
+# Dans vos routes de puzzle, utilisez les chemins d'image de la session
+@app.route('/sliding_pieces')
+def sliding_pieces():
+    session['previous_url'] = url_for('sliding_pieces')
+    session['current_url'] = url_for('sliding_pieces')
+
+    # Récupérer le chemin de l'image sélectionnée stockée dans la session
+    base_image_path = session.get('puzzle_image_path', 'static/images/puzzle.png')
+    base_image_color_path = session.get('puzzle_image_color_path', 'static/images/puzzle_color.png')
+    
+    # Générer le puzzle avec l'image sélectionnée
+    puzzle = create_puzzle(base_image_path, base_image_color_path, rows, cols)
+    
+    return render_template('sliding_pieces.html', puzzle=puzzle)
+
+
+@app.route('/free_pieces')
+def free_pieces():
+    session['previous_url'] = url_for('free_pieces')
+    session['current_url'] = url_for('free_pieces')
+    
+    # Utilisez les mêmes chemins d'image que ceux définis dans la session
+
+    base_image_path = session.get('puzzle_image_path', 'static/images/puzzle.png')
+    base_image_color_path = session.get('puzzle_image_color_path', 'static/images/puzzle_color.png')
+    
+    puzzle = create_puzzle(base_image_path, base_image_color_path, rows, cols)
+    
+    return render_template('free_pieces.html', puzzle=puzzle)
+
+# Select image
+@app.route('/select-image')
+def select_image():
+    image_files = os.listdir('static/images/examples')
+    return render_template('select_image.html', images=image_files)
+
+
+@app.route('/set-puzzle-image', methods=['POST'])
+def set_puzzle_image():
+    data = request.get_json()
+    selected_image = data['image']
+
+    session['puzzle_image_path'] = os.path.join('static/images/examples', selected_image)
+    session['puzzle_image_color_path'] = os.path.join('static/images/examples_with_color', selected_image)
+
+    previous_url = session.get('previous_url', url_for('index'))  # Default to index if not set
+    return jsonify({'redirect_url': previous_url})
+
+
 # Ensemble des extensions de fichiers autorisées
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
@@ -240,62 +296,11 @@ def upload_image_route():
             colorized_image_path = colorize_image(filepath, model) # Coloriser l'image
             session['colorized_image_path'] = colorized_image_path # Stocker le chemin de l'image colorisée dans la session
 
-            return redirect(url_for('sliding_pieces'))
+            current_url = session.get('current_url', url_for('index'))
+            return redirect(current_url)
+
     # Si GET, afficher la page de téléchargement
     return render_template('upload.html')
-
-    
-# Menu 
-@app.route('/')
-def index():
-    return render_template('Index.html')
-
-# Select image
-@app.route('/select-image')
-def select_image():
-    image_files = os.listdir('static/images/examples')
-    return render_template('select_image.html', images=image_files)
-
-from flask import session
-
-# Définissez une route pour mettre à jour l'image sélectionnée
-@app.route('/set-puzzle-image', methods=['POST'])
-def set_puzzle_image():
-    data = request.get_json()
-    selected_image = data['image']
-    
-    # Mettez à jour le chemin de l'image utilisé pour le puzzle
-    session['puzzle_image_path'] = os.path.join('static/images/examples', selected_image)
-    
-    # Ici, vous pouvez définir base_image_color_path pour pointer vers l'image colorée correspondante
-    # Cela pourrait être simplement la même image que celle sélectionnée, si vous avez des versions colorées dans le dossier 'examples'
-    session['puzzle_image_color_path'] = os.path.join('static/images/examples_with_color', selected_image)
-    
-    return jsonify({'message': 'Image selected successfully'})
-
-
-# Dans vos routes de puzzle, utilisez les chemins d'image de la session
-@app.route('/sliding_pieces')
-def sliding_pieces():
-    # Récupérer le chemin de l'image sélectionnée stockée dans la session
-    base_image_path = session.get('puzzle_image_path', 'static/images/puzzle.png')
-    base_image_color_path = session.get('puzzle_image_color_path', 'static/images/puzzle_color.png')
-    
-    # Générer le puzzle avec l'image sélectionnée
-    puzzle = create_puzzle(base_image_path, base_image_color_path, rows, cols)
-    
-    return render_template('sliding_pieces.html', puzzle=puzzle)
-
-
-@app.route('/free_pieces')
-def free_pieces():
-    # Utilisez les mêmes chemins d'image que ceux définis dans la session
-    base_image_path = session.get('puzzle_image_path', 'static/images/puzzle.png')
-    base_image_color_path = session.get('puzzle_image_color_path', 'static/images/puzzle_color.png')
-    
-    puzzle = create_puzzle(base_image_path, base_image_color_path, rows, cols)
-    
-    return render_template('free_pieces.html', puzzle=puzzle)
 
 
 if __name__ == '__main__':

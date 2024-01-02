@@ -13,8 +13,40 @@ function shufflePieces() {
     }
 }
 
+function submitImageUploadForm() {
+    // Vérifiez si un fichier a été sélectionné
+    const input = document.getElementById('imageUpload');
+    if (input.files.length > 0) {
+        // Créez un FormData et ajoutez le fichier
+        const formData = new FormData();
+        formData.append('file', input.files[0]);
+
+        // Utilisez fetch API pour envoyer le fichier
+        fetch('/upload-image', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            // Vérifiez que la réponse du serveur est ok (statut HTTP 200-299)
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            // Recharger la page après l'upload réussi
+            window.location.reload();
+        })
+        .catch(error => {
+            // Gérez les erreurs de réseau ou les erreurs de parsing JSON ici
+            console.error('Error:', error);
+        });
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    // Attachez l'événement 'change' à l'input de type fichier
+    const imageUpload = document.getElementById('imageUpload');
+    imageUpload.addEventListener('change', submitImageUploadForm);
 
 const shuffleButton = document.getElementById('shuffle-button');
     shuffleButton.addEventListener('click', shufflePieces);

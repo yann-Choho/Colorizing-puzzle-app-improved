@@ -5,92 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/free_piece.css') }}">
+
     <style>
-
-        /* Puzzle styles in css */
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            justify-content: flex-start;
-            background-image: url("{{ url_for('static', filename='images/background1.jpg') }}");
-            background-size: cover; /* Cover the entire viewport */
-            background-position: center; /* Center the image in the viewport */
-            background-repeat: no-repeat; /* Do not repeat the image */
-            background-color: #f0f0f0; /* Fallback color */
-        }
-
-        h1 {
-            margin-top: 20px; /* Adjust as needed */
-        }
-
-        #puzzle-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            margin: 20px 0;
-            width: 330px; 
-        }
-
-        .grid-cell {
-            width: 100px;
-            height: 100px;
-            border: 1px solid #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .puzzle-pieces-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 20px; /* Space before the shuffle button */
-        }
-
-        .puzzle-piece {
-            width: 80px;
-            height: 80px;
-            border: 1px solid #000;
-            cursor: pointer;
-            background-size: cover;
-        }
-
-        .button-style {
-        padding: 0px 20px; /* Adjust padding to control the size */
-        margin: 0 5px;
-        text-decoration: none;
-        background: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        display: inline-block; /* Important for anchor to behave like a button */
-        text-align: center;
-        /* Set a fixed width and height for consistency */
-        width: 150px; 
-        height: 50px;
-        line-height: 50px; /* Vertically center the text */
-        box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    }
-
-        .button-style:hover {
-            background: #0056b3;
-        }
-
-        /* Centering the shuffle button and index link */
-        .button-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
     </style>
 </head>
 <body>
@@ -127,11 +44,22 @@
 
     <!-- The shuffle button and index link -->
     <div class="button-container">
-        <button id="shuffle-button" class="button-style" onclick="shufflePieces()">Melanger</button>
-        <a href="{{ url_for('index') }}" class="button-style">Accueil</a>
+            <button id="shuffle-button" class="button-style" onclick="shufflePieces()">Melanger</button>
+            <a href="{{ url_for('index') }}" class="button-style">Accueil</a>
+        <!-- Bouton pour activer le formulaire d'upload d'image -->
+        <button class="button-style" onclick="document.getElementById('imageUpload').click()">Importer mon image</button>
+        <!-- ... Autres boutons ... -->
+        <a href="{{ url_for('select_image') }}" class="button-style">Choisir une Image</a>    
+        <button id="downloadButton" class="button-style" style="display: none;" onclick="downloadImage()">Télécharger l'Image</button>
     </div>
-
+ 
+    <!-- Formulaire d'upload d'image (masqué) -->
+    <form id="imageUploadForm" action="{{ url_for('upload_image_route') }}" method="post" enctype="multipart/form-data" style="display: none;">
+        <input type="file" id="imageUpload" name="file" onchange="submitImageUploadForm()" required>
+        <!-- Pas besoin de bouton 'submit' ici car le formulaire sera soumis par JavaScript -->
+    </form>
     <!-- Call the JavaScript file -->
     <script src="{{ url_for('static', filename='js/free_pieces.js') }}"></script>
 </body>
 </html>
+
