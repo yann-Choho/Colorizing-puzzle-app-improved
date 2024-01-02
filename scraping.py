@@ -1,3 +1,5 @@
+#A chrome webdriver is needed to run the script. To download it, see https://chromedriver.chromium.org/downloads.
+
 #How to run : python scraping.py webdriver_path download_path max_images_per_key key1 key2 key3 ...
 #Ex : python scraping.py ./chromedriver-win64/chromedriver.exe ./images/original_images/ 200 couch castle sea landscape
 
@@ -156,7 +158,3 @@ if __name__ == "main":
     keys = sys.argv[4:]
 
     get_images(keys, webdriver_path, download_path, max_images_per_key=max_images_per_key)
-
-
-#Words : 
-#lunch letters fairies pig horse cow chicken lion rainforest forest leaves ice icecream corn cattle mountain snow train car plane truck grape appletree orangetree army fire fireworks bedroom couch chocolate earth jam fish ocean beach bikes cats dogs cities buildings suburbs face football climbing cliff climbers footballers human girl boy child 
