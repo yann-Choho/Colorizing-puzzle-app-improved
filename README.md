@@ -26,6 +26,6 @@ To develop the app, we followed several steps.
 * ...
 
 ## Notes on running the scripts
-The scripts relevant to the scraping and the training of the images don't have to run in order to run the app. Indeed, the model is already trained and does not need to be trained again. However, if you want to run these scripts, there are a few action to take first:
+The scripts relevant to the scraping and the training of the images don't have to run in order to run the app. Indeed, the model is already trained and does not need to be trained again. However, if you want to run these scripts, there are a few actions to take first:
 * **Scraping** : a chrome webdriver is needed to run the script. To download it, see https://chromedriver.chromium.org/downloads.
 * **Model training** : before running the script to train the model, unzip all color images (that can be found in `scraping_images/images`) into the subfolder `images_folder/color/color_images`.
