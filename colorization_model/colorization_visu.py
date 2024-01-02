@@ -34,7 +34,7 @@ model.load_state_dict(torch.load(path_params))
 
 print("Model set up with optimal parameters provided")
 # %%
-def imshow(img):
+def imshow(img : Image.Image) -> None :
     # Convert from Tensor image and display
     img = img / 2 + 0.5  # Unnormalize
     npimg = img.numpy()
