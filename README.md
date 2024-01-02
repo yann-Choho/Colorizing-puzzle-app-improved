@@ -3,19 +3,15 @@
 ## How to run the app
 First, build the docker image by running the following command in a terminal :
 
-<pre>
 ```bash
 docker build . -t puzzle_image
 ```
-<pre>
 
 Then, run the container:
 
-<pre>
 ```bash
 docker run -p 8000:8000 puzzle_image
 ```
-<pre>
 
 The app runs on `http://0.0.0.0:8000/`. If this url does not work, try `http://127.0.0.1:8000/` or `http://localhost:8000/`.
 
