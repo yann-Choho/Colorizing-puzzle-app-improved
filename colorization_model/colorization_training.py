@@ -8,7 +8,8 @@ For this code to work, you first have to download and unzip the color images int
 """
 
 #%% imports
-import torch #requirement: pip install pytorch. Version depends on your build, if unsure, just install pytorch and it will run on the cpu instead of the gpu. 
+import torch #requirement: pip install pytorch. Version depends on your build,
+             # if unsure, just install pytorch and it will run on the cpu instead of the gpu.
 import torch.nn as nn
 import torch.optim as optim
 from torchvision import datasets, transforms
@@ -43,18 +44,20 @@ if __name__ == "__main__":
 
 #%% Load the dataset, split it into train and test. Fix the seed to have the same split for everybody.
     img_path=r".\images_folder\color"
-    # img_path = r"C:\Users\Thomas\Downloads\Colorisation-d-images-via-le-machine-learning-dev_scraping\images folder\color_planes"
     inp=img_path
     output=r".\images_folder\split"
-    
-    splitfolders.ratio(inp, output=output, seed=123, ratio=(.85, 0,0.15)) 
+
+    splitfolders.ratio(inp, output=output, seed=123, ratio=(.85, 0,0.15))
+
 # %% Setup the transformations for the training and testing dataset.
 
     train_transform = transforms.Compose([
         transforms.TrivialAugmentWide(num_magnitude_bins=31),
-        transforms.ToTensor()  
+        transforms.ToTensor()
     ])
-    # TrivialAugment is a Data Augmentation method: an augmentation method is chosed in a range of trivial augmentations (change in lighting, image flip, etc.), applied at a given magnitude. Read more here: https://pytorch.org/vision/main/generated/torchvision.transforms.TrivialAugmentWide.html
+    # TrivialAugment is a Data Augmentation method: an augmentation method is chosen in a range of trivial augmentations
+    # (change in lighting, image flip, etc.), applied at a given magnitude.
+    # Read more here: https://pytorch.org/vision/main/generated/torchvision.transforms.TrivialAugmentWide.html
 
     test_transform = transform = transforms.Compose([
         transforms.ToTensor(),
@@ -62,7 +65,8 @@ if __name__ == "__main__":
 
     train_dataset = datasets.ImageFolder(root=output+"\\train", transform=train_transform)
     test_dataset = datasets.ImageFolder(root=output+"\\test", transform=test_transform)
-    # ImageFolder expects a folder with subfolders, that are normally used to get the number of classification bins. Here, there is no classification, hence there is only one subfolder.
+    # ImageFolder expects a folder with subfolders, that are normally used to get the number of classification bins.
+    # Here, there is no classification, hence there is only one subfolder.
     # %%
     train_loader = DataLoader(dataset=train_dataset, batch_size=1, num_workers=os.cpu_count(), shuffle=True)
     # num_workers=os.cpu_count() allows the DataLoader to use as much cpu cores as needed.
@@ -106,7 +110,7 @@ if __name__ == "__main__":
     # save model parameters
 
     # path of the file
-    params_file_path = 'model1.pth' 
+    params_file_path = 'model1.pth'
 
     # save parameters in this file
     torch.save(model.state_dict(), params_file_path)

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 """
-This code is here to show how the model colorizes an image.
-Run colorization_training first, expecially the splitfolders part, if you want to see it run on the leftover images from the training dataset.
+This code aims to show how the model colorizes an image.
+Run colorization_training first, especially the splitfolders part, if you want to see it run on the leftover images from the training dataset.
 
 """
 #%%
@@ -33,7 +33,8 @@ path_params = os.path.join(parent_path,'model1.pth')
 model.load_state_dict(torch.load(path_params))
 
 print("Model set up with optimal parameters provided")
-# %%
+
+# %% defining a function to show any image
 def imshow(img : Image.Image) -> None :
     # Convert from Tensor image and display
     img = img / 2 + 0.5  # Unnormalize
@@ -42,7 +43,7 @@ def imshow(img : Image.Image) -> None :
         plt.imshow(npimg, cmap='gray')
     else:
         plt.imshow(np.transpose(npimg, (1, 2, 0)))
-#%% showing the colorization of a random image from our database.
+# %%
 
 output=os.path.join(parent_path,r"images_folder\split")
 try:
