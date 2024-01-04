@@ -1,22 +1,4 @@
-# Colorisation d'images via le machine learning
-
-![colorized image](images_folder/image%20bank/results/1.jpg)
-
-
-<table border=0>
-  <tr>
-    <td align="center">
-      <img src="images_folder/image%20bank/keep/_1.jpg" alt="Image en noir et blanc" width = 50%>
-      <br>
-      <em>Grayscale</em>
-    </td>
-    <td align="center" style="width: 50%;">
-      <img src="images_folder/image%20bank/results/1.jpg" alt="Image en couleurs" width = 50%>
-      <br>
-      <em>Colorized image</em>
-    </td>
-  </tr>
-</table>
+# Using machine learning to colorize images 
 
 
 <p align="center">
