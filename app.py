@@ -224,23 +224,20 @@ def set_puzzle_image():
     data = request.get_json()
     selected_image = data['image']
 
-    # Chemin de l'image d'origine sélectionnée
+    # Path of the original selected image
     original_image_path = os.path.join('static/images/examples', selected_image)
 
-    # Chemin de l'image colorisée qui sera créé
-    colorized_image_path = 'static/images/colorized_image.png'
+    # Call the colorize_image function to colorize and save the image
+    colorized_image_path = colorize_image(original_image_path, model)
 
-    # Appeler la fonction pour coloriser l'image et la sauvegarder
-    colorize_image(original_image_path, colorized_image_path)
-
-    # Stocker les chemins dans la session
+    # Store the paths in the session
     session['puzzle_image_path'] = original_image_path
     session['puzzle_image_color_path'] = colorized_image_path
 
-    # Récupérer l'URL précédente pour la redirection
+    # Retrieve the previous URL for redirection
     previous_url = session.get('previous_url', url_for('index'))
 
-    # Retourner l'URL pour la redirection côté client
+    # Return the URL for client-side redirection
     return jsonify({'redirect_url': previous_url})
 
 
