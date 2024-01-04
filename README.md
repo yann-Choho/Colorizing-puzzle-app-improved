@@ -16,7 +16,7 @@
 <table>
   <tr>
     <td align="center">
-      <img src="images_folder/image%20bank/keep/1.jpg" alt="Grayscale image">
+      <img src="images_folder/image%20bank/keep/_1.jpg" alt="Grayscale image">
       <br>
       <em>Grayscale image</em>
     </td>
