@@ -3,8 +3,16 @@
 ![colorized image](images_folder/image%20bank/results/1.jpg)
 
 
-*Colorized image*
+**
 
+
+<p align="center">
+  <img src="images_folder/image%20bank/results/1.jpg" alt="Image colorisée">
+</p>
+
+<p align="center">
+  <em>Colorized image</em>
+</p>
 
 ## Description of the puzzle app
 
