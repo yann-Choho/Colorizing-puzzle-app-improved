@@ -29,6 +29,13 @@
 </div>
 
 
+
+| ![Grayscale](images_folder/image%20bank/keep/_1.jpg) | ![Colorized](images_folder/image%20bank/results/1.jpg) |
+|:-----------------------------------------------------:|:--------------------------------------------------------:|
+| **Grayscale**                                          | **Colorized image**                                       |
+
+
+
 ## Description of the puzzle app
 
 Explain the puzzle (readme preparing merging)
