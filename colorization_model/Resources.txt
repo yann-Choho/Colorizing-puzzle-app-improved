@@ -1,4 +1,4 @@
-** Resources and research material that was used for the colorization model **
+**Resources and research material that was used for the colorization model**
 
 Videos :
 
