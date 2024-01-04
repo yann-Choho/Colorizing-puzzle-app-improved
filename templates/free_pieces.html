@@ -1,0 +1,62 @@
+<!-- templates/free_pieces.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/free_piece.css') }}">
+</head>
+<body>
+    <!-- The puzzle Title -->
+    <h1>Free Pieces Puzzle</h1>
+
+    <!-- Puzzle container -->
+    <div id="puzzle-container">
+        <!-- Grid cells and pieces will be dynamically added here -->
+        <div class="grid-cell" data-index="0"></div>
+        <div class="grid-cell" data-index="1"></div>
+        <div class="grid-cell" data-index="2"></div>
+        <div class="grid-cell" data-index="3"></div>
+        <div class="grid-cell" data-index="4"></div>
+        <div class="grid-cell" data-index="5"></div>
+        <div class="grid-cell" data-index="6"></div>
+        <div class="grid-cell" data-index="7"></div>
+        <div class="grid-cell" data-index="8"></div>
+    </div>
+
+    <!-- Puzzle pieces container -->
+    <div class="puzzle-pieces-container">
+        <!-- Pieces will be dynamically added here -->
+        <div class="puzzle-piece" data-piece-index="0"></div>
+        <div class="puzzle-piece" data-piece-index="1"></div>
+        <div class="puzzle-piece" data-piece-index="2"></div>
+        <div class="puzzle-piece" data-piece-index="3"></div>
+        <div class="puzzle-piece" data-piece-index="4"></div>
+        <div class="puzzle-piece" data-piece-index="5"></div>
+        <div class="puzzle-piece" data-piece-index="6"></div>
+        <div class="puzzle-piece" data-piece-index="7"></div>
+        <div class="puzzle-piece" data-piece-index="8"></div>
+    </div>
+
+    <!-- The shuffle button and index link -->
+    <div class="button-container">
+            <button id="shuffle-button" class="button-style" onclick="shufflePieces()">Melanger</button>
+            <a href="{{ url_for('index') }}" class="button-style">Accueil</a>
+        <!-- Bouton pour activer le formulaire d'upload d'image -->
+        <button class="button-style" onclick="document.getElementById('imageUpload').click()">Importer mon image</button>
+        <!-- ... Autres boutons ... -->
+        <a href="{{ url_for('select_image') }}" class="button-style">Choisir une Image</a>    
+        <button id="downloadButton" class="button-style" onclick="downloadColorizedImage()">Télécharger l'Image</button>
+    </div>
+ 
+    <!-- Formulaire d'upload d'image (masqué) -->
+    <form id="imageUploadForm" action="{{ url_for('upload_image_route') }}" method="post" enctype="multipart/form-data" style="display: none;">
+        <input type="file" id="imageUpload" name="file" onchange="submitImageUploadForm()" required>
+        <!-- Pas besoin de bouton 'submit' ici car le formulaire sera soumis par JavaScript -->
+    </form>
+    <!-- Call the JavaScript file -->
+    <script src="{{ url_for('static', filename='js/free_pieces.js') }}"></script>
+</body>
+</html>
+
