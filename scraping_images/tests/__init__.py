@@ -1,0 +1,1 @@
+#This code is a dummy, made to make sure that tes_color_to_bw.py works as intended.
