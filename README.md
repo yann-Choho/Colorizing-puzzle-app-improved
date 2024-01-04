@@ -1,14 +1,17 @@
-# Using machine learning to colorize images 
+# Puzzle using black and white images colorized with a CNN
 
+## Using machine learning to colorize images 
+
+After scrapping some images on the internet, we used them to train a convolutionnal neural network designed to colorize images. Here is an exemple of a grayscale image colorized thanks to the model. 
 
 <p align="center">
-  <img src="images_folder/image%20bank/keep/_1.jpg" alt="Image en noir et blanc" width = "400">
+  <img src="images_folder/image%20bank/keep/_1.jpg" alt="Grayscale" width = "400">
   <br>
-  <em>Grayscale</em>
+  <em>Grayscale image</em>
 </p>
 
 <p align="center">
-  <img src="images_folder/image%20bank/results/1.jpg" alt="Image en couleurs" width = "400">
+  <img src="images_folder/image%20bank/results/1.jpg" alt="Colorized" width = "400">
   <br>
   <em>Colorized image</em>
 </p>
