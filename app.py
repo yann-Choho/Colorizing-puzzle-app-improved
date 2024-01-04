@@ -1,7 +1,7 @@
-# app.py
+# -*- coding: utf-8 -*-
 
+### === Main code for the Flask app === ###
 
-# Main code for the Flask app
 # Each puzzle page (sliding / free) has its own :
     # .html to specify display
     # .js to specify interactive content 
@@ -19,20 +19,18 @@ from PIL import Image
 import io
 import random
 
+from colorization_utils import ColorizationNet
+
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
 
 
-import torch
-from torchvision import transforms
-from PIL import Image
-
-from colorization_utils import ColorizationNet
 
 ###################### COLORIZATION WITH DEEP LEARNING ######################
 
 # Function to load the model
+# we use the colorization net defined in colorization_utils.py
 def load_model(model_path):
     model = ColorizationNet()
     model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
@@ -43,7 +41,7 @@ def load_model(model_path):
 model = load_model('model1.pth')  # TODO : put it in folder colorization model
 
 # Function to colorize the image
-def colorize_image(image_path, model, output_format='png'):
+def colorize_image(image_path: str, model, output_format: str = 'png') -> str:
     """
     Colorizes a black and white image.
 
@@ -98,7 +96,7 @@ class PuzzlePiece:
 
 
 
-def create_puzzle(base_image_path, base_image_color_path, rows=rows, cols=cols):
+def create_puzzle(base_image_path: str, base_image_color_path: str, rows: int = rows, cols: int = cols):
     # Black and White
 
     # Perform image slicing and save sliced images
@@ -106,8 +104,6 @@ def create_puzzle(base_image_path, base_image_color_path, rows=rows, cols=cols):
     image_width, image_height = original_image.size
     piece_width = image_width // cols
     piece_height = image_height // rows
-
-
 
     for j in range(rows):
         for i in range(cols):
@@ -182,17 +178,17 @@ def create_puzzle(base_image_path, base_image_color_path, rows=rows, cols=cols):
 def index():
     return render_template('index.html')
 
-# Dans vos routes de puzzle, utilisez les chemins d'image de la session
+# use the images path as an app route
 @app.route('/sliding_pieces')
 def sliding_pieces():
     session['previous_url'] = url_for('sliding_pieces')
     session['current_url'] = url_for('sliding_pieces')
 
-    # Récupérer le chemin de l'image sélectionnée stockée dans la session
+    # get the path of the image saved in the login
     base_image_path = session.get('puzzle_image_path', 'static/images/puzzle.png')
     base_image_color_path = session.get('puzzle_image_color_path', 'static/images/puzzle_color.png')
     
-    # Générer le puzzle avec l'image sélectionnée
+    # create the puzzle with the image selected
     puzzle = create_puzzle(base_image_path, base_image_color_path, rows, cols)
     
     return render_template('sliding_pieces.html', puzzle=puzzle)
@@ -203,7 +199,7 @@ def free_pieces():
     session['previous_url'] = url_for('free_pieces')
     session['current_url'] = url_for('free_pieces')
     
-    # Utilisez les mêmes chemins d'image que ceux définis dans la session
+    # Use the same image paths as those defined in the login
 
     base_image_path = session.get('puzzle_image_path', 'static/images/puzzle.png')
     base_image_color_path = session.get('puzzle_image_color_path', 'static/images/puzzle_color.png')
@@ -241,11 +237,11 @@ def set_puzzle_image():
     return jsonify({'redirect_url': previous_url})
 
 
-# Ensemble des extensions de fichiers autorisées
+# define file extensions allowed
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 def allowed_file(filename):
-    # Vérifiez si l'extension du fichier est autorisée
+    # check whether the file extension is allowed
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -260,17 +256,18 @@ def upload_image_route():
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
 
-            # Créer un nouveau puzzle avec l'image téléchargée
-            session['puzzle_image_path'] = filepath # Stocker le chemin dans la session
-            colorized_image_path = colorize_image(filepath, model) # Coloriser l'image
-            session['colorized_image_path'] = colorized_image_path # Stocker le chemin de l'image colorisée dans la session
+            # create a new puzzle with the downloaded image
+            session['puzzle_image_path'] = filepath # save the path in the login
+            colorized_image_path = colorize_image(filepath, model) # colorize the image
+            session['colorized_image_path'] = colorized_image_path # save the colorized image path in the login
 
             current_url = session.get('current_url', url_for('index'))
             return redirect(current_url)
 
-    # Si GET, afficher la page de téléchargement
-    return render_template('index.html') # ramène à la page d'acceuil si erreur
+    # if get, display the download page
+    return render_template('index.html') # go back to the menu if an error occurs
 
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)
+
