@@ -44,6 +44,22 @@
 </div>
 
 
+<table>
+  <tr>
+    <td align="center" style="width: 50%;">
+      <img src="images_folder/image%20bank/keep/_1.jpg" alt="Image en noir et blanc">
+      <br>
+      <em>Grayscale</em>
+    </td>
+    <td align="center" style="width: 50%;">
+      <img src="images_folder/image%20bank/results/1.jpg" alt="Image en couleurs">
+      <br>
+      <em>Colorized image</em>
+    </td>
+  </tr>
+</table>
+
+
 
 ## Description of the puzzle app
 
