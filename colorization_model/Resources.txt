@@ -1,6 +1,6 @@
-Resources and research material that was used for the colorization model. 
+** Resources and research material that was used for the colorization model **
 
-Vidéos :
+Videos :
 
 Colorization : https://www.youtube.com/watch?v=WXyeQeHUxpc&ab_channel=ComputingForAll
 Colorisation with GANs : https://www.youtube.com/watch?v=v88IUAsgfz0&ab_channel=CoderzDen
