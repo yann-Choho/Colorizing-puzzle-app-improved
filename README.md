@@ -44,18 +44,7 @@
 </div>
 
 
-<style>
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-
-  table, th, td {
-    border: none;
-  }
-</style>
-
-<table>
+<table border=0>
   <tr>
     <td align="center" style="width: 50%;">
       <img src="images_folder/image%20bank/keep/_1.jpg" alt="Image en noir et blanc">
