@@ -1,4 +1,4 @@
-# Puzzle using black and white images colorized with a CNN
+# Puzzle using grayscale images colorized with a CNN
 
 ## Using machine learning to colorize images 
 
