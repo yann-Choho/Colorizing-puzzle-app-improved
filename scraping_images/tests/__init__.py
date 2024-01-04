@@ -1,1 +1,1 @@
-#This code is a dummy, made to make sure that test_color_to_bw.py works as intended.
+#This code is a dummy, made to make sure that color_to_bw.py works as intended.
