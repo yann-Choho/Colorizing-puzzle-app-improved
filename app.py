@@ -269,7 +269,7 @@ def upload_image_route():
             return redirect(current_url)
 
     # Si GET, afficher la page de téléchargement
-    return render_template('upload.html')
+    return render_template('Index.html') # ramène à la page d'acceuil si erreur
 
 
 if __name__ == '__main__':
