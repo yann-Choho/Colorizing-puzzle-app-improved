@@ -28,6 +28,22 @@
   </tr>
 </table>
 
+
+
+<div style="display: flex; justify-content: space-between;">
+  <div style="text-align: center;">
+    <img src="images_folder/image%20bank/keep/_1.jpg" alt="Image en noir et blanc">
+    <br>
+    <em>Grayscale</em>
+  </div>
+  <div style="text-align: center;">
+    <img src="images_folder/image%20bank/results/1.jpg" alt="Image en couleurs">
+    <br>
+    <em>Colorized image</em>
+  </div>
+</div>
+
+
 ## Description of the puzzle app
 
 Explain the puzzle (readme preparing merging)
