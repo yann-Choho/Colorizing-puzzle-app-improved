@@ -3,9 +3,6 @@
 ![colorized image](images_folder/image%20bank/results/1.jpg)
 
 
-**
-
-
 <p align="center">
   <img src="images_folder/image%20bank/results/1.jpg" alt="Image colorisée">
 </p>
@@ -13,6 +10,23 @@
 <p align="center">
   <em>Colorized image</em>
 </p>
+
+
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="images_folder/image%20bank/keep/1.jpg" alt="Grayscale image">
+      <br>
+      <em>Grayscale image</em>
+    </td>
+    <td align="center">
+      <img src="images_folder/image%20bank/results/1.jpg" alt="Colorized image">
+      <br>
+      <em>Colorized image</em>
+    </td>
+  </tr>
+</table>
 
 ## Description of the puzzle app
 
