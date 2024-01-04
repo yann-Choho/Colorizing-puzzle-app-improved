@@ -31,17 +31,18 @@
 
 
 <div style="display: flex; justify-content: space-between; text-align: center;">
-  <div style="flex-basis: 48%;>
+  <div style="flex-basis: 48%;">
     <img src="images_folder/image%20bank/keep/_1.jpg" alt="Image en noir et blanc">
     <br>
     <em>Grayscale</em>
   </div>
-  <div style="flex-basis: 48%;>
+  <div style="flex-basis: 48%;">
     <img src="images_folder/image%20bank/results/1.jpg" alt="Image en couleurs">
     <br>
     <em>Colorized image</em>
   </div>
 </div>
+
 
 
 ## Description of the puzzle app
