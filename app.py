@@ -180,7 +180,7 @@ def create_puzzle(base_image_path, base_image_color_path, rows=rows, cols=cols):
 # Menu 
 @app.route('/')
 def index():
-    return render_template('Index.html')
+    return render_template('index.html')
 
 # Dans vos routes de puzzle, utilisez les chemins d'image de la session
 @app.route('/sliding_pieces')
@@ -269,7 +269,7 @@ def upload_image_route():
             return redirect(current_url)
 
     # Si GET, afficher la page de téléchargement
-    return render_template('Index.html') # ramène à la page d'acceuil si erreur
+    return render_template('index.html') # ramène à la page d'acceuil si erreur
 
 
 if __name__ == '__main__':
