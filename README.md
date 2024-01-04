@@ -7,7 +7,7 @@ After scrapping some images on the internet, we used them to train a convolution
 <p align="center">
   <img src="images_folder/image%20bank/keep/_1.jpg" alt="Grayscale" width = "400">
   <br>
-  <em>Grayscale image</em>
+  <em>Original image</em>
 </p>
 
 <p align="center">
