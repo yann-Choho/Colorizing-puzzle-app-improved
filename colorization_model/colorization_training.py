@@ -3,7 +3,7 @@
 """
 READ FIRST ! 
 
-For this code to work, you first have to download and unzip the color images into the \images_folder\color folder.
+For this code to work, you first have to download and unzip the color images into the \images_folder\color\color_images folder.
 
 """
 
@@ -16,7 +16,7 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import os
 import splitfolders #requirement: pip install split-folders==0.5.1
-from PIL import Image # added
+from PIL import Image
 
 #%% Define the colorization model
 class ColorizationNet(nn.Module):
