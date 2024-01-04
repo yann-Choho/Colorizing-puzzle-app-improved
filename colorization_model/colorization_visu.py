@@ -7,10 +7,7 @@ Run colorization_training first, especially the splitfolders part, if you want t
 """
 #%%
 import torch
-# import torch.nn as nn
-# import torch.optim as optim
 from torchvision import transforms
-# from torch.utils.data import DataLoader, random_split
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
