@@ -2,8 +2,8 @@
 
 Videos :
 
-Colorization : https://www.youtube.com/watch?v=WXyeQeHUxpc&ab_channel=ComputingForAll
-Colorisation with GANs : https://www.youtube.com/watch?v=v88IUAsgfz0&ab_channel=CoderzDen
+Colorization : https://www.youtube.com/watch?v=WXyeQeHUxpc&ab_channel=ComputingForAll \\
+Colorisation with GANs : https://www.youtube.com/watch?v=v88IUAsgfz0&ab_channel=CoderzDen \\
 GAN with pytorch : https://www.youtube.com/watch?v=_pIMdDWK5sc&t=525s&ab_channel=AssemblyAI
 
 Research paper regarding GANs : 
