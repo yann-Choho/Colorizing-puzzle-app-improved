@@ -2,13 +2,13 @@
 
 
 <p align="center">
-  <img src="images_folder/image%20bank/keep/_1.jpg" alt="Image en noir et blanc" width = 400>
+  <img src="images_folder/image%20bank/keep/_1.jpg" alt="Image en noir et blanc" width = "400">
   <br>
   <em>Grayscale</em>
 </p>
 
 <p align="center">
-  <img src="images_folder/image%20bank/results/1.jpg" alt="Image en couleurs" width = 400>
+  <img src="images_folder/image%20bank/results/1.jpg" alt="Image en couleurs" width = "400">
   <br>
   <em>Colorized image</em>
 </p>
@@ -17,12 +17,12 @@
 
 <div style="display: flex; justify-content: space-between; text-align: center;">
   <div style="flex-basis: 48%;">
-    <img src="images_folder/image%20bank/keep/_1.jpg" alt="Image en noir et blanc" width="400">
+    <img src="images_folder/image%20bank/keep/_1.jpg" alt="Image en noir et blanc">
     <br>
     <em>Grayscale</em>
   </div>
   <div style="flex-basis: 48%;">
-    <img src="images_folder/image%20bank/results/1.jpg" alt="Image en couleurs" width="400">
+    <img src="images_folder/image%20bank/results/1.jpg" alt="Image en couleurs">
     <br>
     <em>Colorized image</em>
   </div>
