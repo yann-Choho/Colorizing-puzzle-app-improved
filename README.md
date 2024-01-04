@@ -3,47 +3,6 @@
 ![colorized image](images_folder/image%20bank/results/1.jpg)
 
 
-<p align="center">
-  <img src="images_folder/image%20bank/results/1.jpg" alt="Image colorisée">
-</p>
-
-<p align="center">
-  <em>Colorized image</em>
-</p>
-
-
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="images_folder/image%20bank/keep/_1.jpg" alt="Grayscale image">
-      <br>
-      <em>Grayscale image</em>
-    </td>
-    <td align="center">
-      <img src="images_folder/image%20bank/results/1.jpg" alt="Colorized image">
-      <br>
-      <em>Colorized image</em>
-    </td>
-  </tr>
-</table>
-
-
-
-<div style="display: flex; justify-content: space-between; text-align: center;">
-  <div style="flex-basis: 30%;">
-    <img src="images_folder/image%20bank/keep/_1.jpg" alt="Image en noir et blanc">
-    <br>
-    <em>Grayscale</em>
-  </div>
-  <div style="flex-basis: 30%;">
-    <img src="images_folder/image%20bank/results/1.jpg" alt="Image en couleurs">
-    <br>
-    <em>Colorized image</em>
-  </div>
-</div>
-
-
 <table border=0>
   <tr>
     <td align="center" style="width: 50%;">
