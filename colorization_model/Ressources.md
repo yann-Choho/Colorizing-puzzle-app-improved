@@ -10,9 +10,10 @@ Research paper regarding GANs :
 
 Colorization Using ConvNet and GAN (Stanford uni) : http://cs231n.stanford.edu/reports/2017/pdfs/302.pdf
 
+
 GANs in practice: 
 
-Image-Colorization : https://github.com/TengdaHan/Image-Colorization  Quite a bulky project.
-Image Colorization with U-net and GAN Tutorial : https://github.com/mberkay0/image-colorization Prometteur
-DCGAN Tutorial : https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html
+Image-Colorization : https://github.com/TengdaHan/Image-Colorization  Quite a bulky project. \
+Image Colorization with U-net and GAN Tutorial : https://github.com/mberkay0/image-colorization \
+DCGAN Tutorial : https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html \
 Image colorization using GANs and Keras : https://github.com/PartheshSoni/Image-colorization-using-GANs/blob/master/ImageColourization.ipynb
