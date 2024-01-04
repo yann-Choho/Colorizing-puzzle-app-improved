@@ -28,7 +28,7 @@ import torch
 from torchvision import transforms
 from PIL import Image
 
-from colorization_training import ColorizationNet
+from colorization_utils import ColorizationNet
 
 ###################### COLORIZATION WITH DEEP LEARNING ######################
 
