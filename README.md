@@ -23,12 +23,12 @@
 
 October 2023 - January 2024.
 
-### Introduction
+## Introduction
 
 This application allows you to solve a puzzle of a black-and_white image. Once the puzzle is finished, the image is colorized by a Deep Learning model and appears on your screen!
 
 
-### How to run the app
+## How to run the app
 
 First, build the docker image by running the following command in a terminal :
 
@@ -44,7 +44,7 @@ docker run -p 8000:8000 puzzle_image
 
 The app runs on `http://0.0.0.0:8000/`. If this url does not work, try `http://127.0.0.1:8000/` or `http://localhost:8000/`. In case of trouble, try using another browser.
 
-### Description of the puzzle app
+## Description of the puzzle app
 
 On the menu page, you can choose between 2 types of puzzle : sliding puzzle and free movement puzzle.
 
