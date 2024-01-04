@@ -44,6 +44,17 @@
 </div>
 
 
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  table, th, td {
+    border: none;
+  }
+</style>
+
 <table>
   <tr>
     <td align="center" style="width: 50%;">
