@@ -44,10 +44,21 @@ model = load_model('model1.pth')  # TODO : put it in folder colorization model
 
 # Function to colorize the image
 def colorize_image(image_path, model, output_format='png'):
+    """
+    Colorizes a black and white image.
+
+    Parameters
+    ----------
+    img : a PIL Image, or the string of the path of the image
+
+    Returns
+    -------
+    Image
+        the link to the colorisied image colorized_image_path.
+    """
     # Load and transform the image
     image = Image.open(image_path).convert('L')  # Convert to grayscale
     transform = transforms.Compose([
-        transforms.Resize((256, 256)),  # Resize to the expected input size
         transforms.ToTensor()
     ])
     image = transform(image).unsqueeze(0)
@@ -59,13 +70,10 @@ def colorize_image(image_path, model, output_format='png'):
     # Convert the output to PIL image and save it
     colorized_image = transforms.ToPILImage()(colorized.squeeze(0))
     # Modify the file path based on the specified output format
-    # Colorized_image_path = image_path.rsplit('.', 1)[0] + '_colorized.' + output_format  # TODO : manage customized name
-    colorized_image_path = 'static/images/colorized_image.png'   # TODO : manage extensions
+    colorized_image_path = 'static/images/colorized_image.png'   
     colorized_image.save(colorized_image_path, format=output_format.upper())
 
     return colorized_image_path
-
-# TODO : ajuster le format de l'image pour que l'utilisateur puisse choisir
 
 ###################### PUZZLE ######################
 
@@ -73,57 +81,8 @@ def colorize_image(image_path, model, output_format='png'):
 rows = 3
 cols = 3
 
-# Call the model and set it up.
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-model = ColorizationNet().to(device)
-
-
-# load optimal parameters for the model
-path_params = 'model1.pth' 
-model.load_state_dict(torch.load(path_params, map_location=device))
-
-print("Model set up with optimal parameters provided")
-
-def colorization(img) -> Image:
-    """
-    Colorizes a black and white image.
-
-    Parameters
-    ----------
-    img : a PIL Image, or the string of the path of the image
-
-    Returns
-    -------
-    Image
-        The colorized image, stored as a PIL Image.
-    """
-    
-    if type(img)==str:
-        true_img=Image.open(img)
-    else:
-        true_img=img 
-    transform = transforms.Compose([
-    transforms.ToTensor(),
-    ])
-    
-    img_tensor = transform(true_img).unsqueeze(0)  
-    img_tensor = img_tensor.to(device)
-    
-    # Get the model's output
-    with torch.no_grad():
-        colorized_tensor = model(img_tensor)
-    
-    
-    colorized_img = transforms.ToPILImage()(colorized_tensor.squeeze(0).cpu())
-    return colorized_img
-
-    
-    
 # Initiate a class for the puzzle pieces
 class PuzzlePiece:
-    def __init__(self, id: int, image: str, order: int, width: float, height: float):
-        self.id = id  # correct rank of the piece in the puzzle
     def __init__(self, id: int, image: str, order: int, width: float, height: float):
         self.id = id  # correct rank of the piece in the puzzle
         self.image = image # for display
@@ -265,10 +224,23 @@ def set_puzzle_image():
     data = request.get_json()
     selected_image = data['image']
 
-    session['puzzle_image_path'] = os.path.join('static/images/examples', selected_image)
-    session['puzzle_image_color_path'] = os.path.join('static/images/examples_with_color', selected_image)
+    # Chemin de l'image d'origine sélectionnée
+    original_image_path = os.path.join('static/images/examples', selected_image)
 
-    previous_url = session.get('previous_url', url_for('index'))  # Default to index if not set
+    # Chemin de l'image colorisée qui sera créé
+    colorized_image_path = 'static/images/colorized_image.png'
+
+    # Appeler la fonction pour coloriser l'image et la sauvegarder
+    colorize_image(original_image_path, colorized_image_path)
+
+    # Stocker les chemins dans la session
+    session['puzzle_image_path'] = original_image_path
+    session['puzzle_image_color_path'] = colorized_image_path
+
+    # Récupérer l'URL précédente pour la redirection
+    previous_url = session.get('previous_url', url_for('index'))
+
+    # Retourner l'URL pour la redirection côté client
     return jsonify({'redirect_url': previous_url})
 
 
