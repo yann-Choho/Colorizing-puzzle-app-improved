@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-
+# This code is here to simplify the import of the ColorizationNet class into app.py
 #%% imports
-import torch #requirement: pip install pytorch. Version depends on your build, if unsure, just install pytorch and it will run on the cpu instead of the gpu. 
+import torch 
 import torch.nn as nn
 #%% Define the colorization model
 class ColorizationNet(nn.Module):

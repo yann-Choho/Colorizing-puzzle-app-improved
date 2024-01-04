@@ -42,6 +42,7 @@ def resize_images(path_original: str, path_resized: str, width: int = 64, height
         height (int) : height of the resized image (in pixels).
         file_type (str) : type of the images ('PNG', 'JPEG',...).
     """
+    #Create the folder that will contain the resized images if it doesn't exist
     if not os.path.exists(path_resized):
         os.makedirs(path_resized)
 
@@ -65,7 +66,7 @@ def convert_color_to_black_and_white(path_color: str, path_bw: str, file_type: s
         path_bw (str) : path of the folder in which to store the black and white images.
         file_type (str) : type of the images ('PNG', 'JPEG',...).
     """
-
+    #Create the folder that will contain the resized images if it doesn't exist
     if not os.path.exists(path_bw):
         os.makedirs(path_bw)
 
@@ -79,7 +80,7 @@ def convert_color_to_black_and_white(path_color: str, path_bw: str, file_type: s
     #Zip the folder
     make_archive(path_bw[:-1], format='zip', root_dir=path_bw)
 
-
+#Launch code
 if __name__ == "__main__":
     path_original = sys.argv[1]
     path_color = sys.argv[2]

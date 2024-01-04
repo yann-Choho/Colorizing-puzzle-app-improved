@@ -1,0 +1,1 @@
+#This code is a dummy, made to make sure that color_to_bw.py works as intended. See this stack overflow thread: https://stackoverflow.com/a/71692230/20920567 
