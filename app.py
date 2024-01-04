@@ -13,10 +13,8 @@ from flask import Flask, request, session, jsonify, render_template, redirect, u
 from werkzeug.utils import secure_filename
 import os
 import torch
-import torch.nn as nn
 from torchvision import transforms
 from PIL import Image
-import io
 import random
 
 from colorization_utils import ColorizationNet
@@ -31,14 +29,14 @@ app.secret_key = 'secret_key'
 
 # Function to load the model
 # we use the colorization net defined in colorization_utils.py
-def load_model(model_path: str):
+def load_model(model_path: str) -> ColorizationNet:
     model = ColorizationNet()
     model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
     model.eval()
     return model
 
 # Load the model
-model = load_model('model1.pth')  # TODO : put it in folder colorization model
+model = load_model('model1.pth')
 
 # Function to colorize the image
 def colorize_image(image_path: str, model, output_format: str = 'png') -> str:
@@ -52,7 +50,7 @@ def colorize_image(image_path: str, model, output_format: str = 'png') -> str:
     Returns
     -------
     Image
-        the link to the colorisied image colorized_image_path.
+        the link to the colorized image path.
     """
     # Load and transform the image
     image = Image.open(image_path).convert('L')  # Convert to grayscale
@@ -96,7 +94,7 @@ class PuzzlePiece:
 
 
 
-def create_puzzle(base_image_path: str, base_image_color_path: str, rows: int = rows, cols: int = cols):
+def create_puzzle(base_image_path: str, base_image_color_path: str, rows: int = rows, cols: int = cols) -> list :
     # Black and White
 
     # Perform image slicing and save sliced images
@@ -169,10 +167,9 @@ def create_puzzle(base_image_path: str, base_image_color_path: str, rows: int = 
 
     return shuffled_puzzle
 
-##### THE DIFFERENTE ROUTES OF THE FLASK APP #####
+##### THE DIFFERENT ROUTES OF THE FLASK APP #####
 
 
-    
 # Menu 
 @app.route('/')
 def index():
@@ -184,7 +181,7 @@ def sliding_pieces():
     session['previous_url'] = url_for('sliding_pieces')
     session['current_url'] = url_for('sliding_pieces')
 
-    # get the path of the image saved in the login
+    # get the path of the image saved in the session
     base_image_path = session.get('puzzle_image_path', 'static/images/puzzle.png')
     base_image_color_path = session.get('puzzle_image_color_path', 'static/images/puzzle_color.png')
     
@@ -199,7 +196,7 @@ def free_pieces():
     session['previous_url'] = url_for('free_pieces')
     session['current_url'] = url_for('free_pieces')
     
-    # Use the same image paths as those defined in the login
+    # Use the same image paths as those defined in the session
 
     base_image_path = session.get('puzzle_image_path', 'static/images/puzzle.png')
     base_image_color_path = session.get('puzzle_image_color_path', 'static/images/puzzle_color.png')
@@ -240,7 +237,7 @@ def set_puzzle_image():
 # define file extensions allowed
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
-def allowed_file(filename):
+def allowed_file(filename) -> bool :
     # check whether the file extension is allowed
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
