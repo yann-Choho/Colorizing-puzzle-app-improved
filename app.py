@@ -31,7 +31,7 @@ app.secret_key = 'secret_key'
 
 # Function to load the model
 # we use the colorization net defined in colorization_utils.py
-def load_model(model_path):
+def load_model(model_path: str):
     model = ColorizationNet()
     model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
     model.eval()
