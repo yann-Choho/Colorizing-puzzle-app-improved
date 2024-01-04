@@ -61,13 +61,13 @@
 
 
 <p align="center">
-  <img src="images_folder/image%20bank/keep/_1.jpg" alt="Image en noir et blanc" width = 500>
+  <img src="images_folder/image%20bank/keep/_1.jpg" alt="Image en noir et blanc" width = 400>
   <br>
   <em>Grayscale</em>
 </p>
 
 <p align="center">
-  <img src="images_folder/image%20bank/results/1.jpg" alt="Image en couleurs" width = 500>
+  <img src="images_folder/image%20bank/results/1.jpg" alt="Image en couleurs" width = 400>
   <br>
   <em>Colorized image</em>
 </p>
