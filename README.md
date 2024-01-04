@@ -2,7 +2,7 @@
 
 ## Using machine learning to colorize images 
 
-After scrapping some images on the internet, we used them to train a convolutionnal neural network designed to colorize images. Here is an exemple of a grayscale image colorized thanks to the model. 
+After scrapping some images on the internet, we used them to train a convolutionnal neural network designed to colorize images. Here is an example of a grayscale image colorized thanks to the model. 
 
 <p align="center">
   <img src="images_folder/image%20bank/keep/_1.jpg" alt="Grayscale" width = "400">
