@@ -1,5 +1,9 @@
 # Colorisation d'images via le machine learning
 
+![colorized image](images_folder/image bank/results/1.jpg)
+
+
+
 ## Description of the puzzle app
 
 Explain the puzzle (readme preparing merging)
