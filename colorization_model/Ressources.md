@@ -1,5 +1,5 @@
 # Resources and research material that was used for the colorization model
-After the convolutionnal neural network, we tried to set up a model based on Generative Adversarial Networks. However, as it did not give better results (even though it was supposed to), we retained the CNN instead.
+After the convolutional neural network, we tried to set up a model based on Generative Adversarial Networks. However, as it did not give better results (even though it was supposed to), we kept the CNN instead.
 
  ## Videos
 
