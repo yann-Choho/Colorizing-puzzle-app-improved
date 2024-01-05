@@ -1,1 +1,1 @@
-#This code is a dummy, made to make sure that color_to_bw.py works as intended. See this stack overflow thread: https://stackoverflow.com/a/71692230/20920567 
+#This __init__ file is here to make sure the tests are accessed in VScode (See this stack overflow thread: https://stackoverflow.com/a/71692230/20920567).
