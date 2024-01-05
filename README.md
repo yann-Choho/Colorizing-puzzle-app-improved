@@ -30,6 +30,8 @@ This application allows you to solve a puzzle of a black-and_white image. Once t
 
 ## How to run the app
 
+You don't need to run the underlying model to play with the puzzle, just run the app with Docker and have fun !
+
 First, build the docker image by running the following command in a terminal :
 
 ```bash
