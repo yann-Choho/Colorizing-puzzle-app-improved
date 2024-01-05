@@ -44,7 +44,7 @@ Then, run the container:
 docker run -p 8000:8000 puzzle_image
 ```
 
-The app runs on `http://0.0.0.0:8000/`. If this url does not work, try `http://127.0.0.1:8000/` or `http://localhost:8000/`. In case of trouble, try using another browser.
+The app runs on `http://0.0.0.0:8000/`. If this url does not work, try `http://127.0.0.1:8000/` or `http://localhost:8000/`. If the colored image doesn't load after completing the puzzle, try using another browser.
 
 ## Description of the puzzle app
 
