@@ -89,7 +89,7 @@ The scripts relevant to the scraping and the training of the images don't have t
 </p>
 
 <p align="center">
-  <img src="images_folder/image%20bank/results/1.jpg" alt="Colorized" width = "300">
+  <img src="static/images/examples_with_color/_1.jpg" alt="Colorized" width = "300">
   <br>
   <em>Colorized image</em>
 </p>
