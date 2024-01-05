@@ -25,7 +25,7 @@ October 2023 - January 2024.
 
 ## Introduction
 
-This application allows you to solve a puzzle of a black-and_white image. Once the puzzle is finished, the image is colorized by a Deep Learning model and appears on your screen!
+This application allows you to solve a puzzle of a black-and-white image. Once the puzzle is finished, the image is colorized by a Deep Learning model and appears on your screen!
 
 
 ## How to run the app
