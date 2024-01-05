@@ -14,7 +14,7 @@ class FlaskAppTests(unittest.TestCase):
         # Test the index route
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Bienvenue!', response.data)
+        self.assertIn(b'Coloriser vos images', response.data)
 
     def test_sliding_pieces_route(self):
         # Test the sliding_pieces route
