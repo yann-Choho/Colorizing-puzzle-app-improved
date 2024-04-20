@@ -1,13 +1,24 @@
 
 # ENSAE Paris | Institut Polytechnique de Paris
 
-## Mise en Prod
-
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/LOGO-ENSAE.png/900px-LOGO-ENSAE.png" width="300">
+
+## Course : Mise en production des projets de data-science
+### Lino GALIANA and Romain AVOUAC
+
+### Academic year: 2023-2024
+February 2024 - May 2024
+
 
 ## Topic : Machine Learning-Driven Image Colorization, a Puzzle Quest to Get Your Image Colorful 🎨
 
-### Realised by : 
+### Realised by :
+
+* Yann Eric CHOHO
+* Thomas PIQUÉ
+* Pierre REGNARD
+
+### Based on a former project for the course "Infrastructures et systèmes logiciels" with Antoine CHANCEL, realised by :
 
 * Rayan TALATE
 * Yseult MASSON
@@ -15,13 +26,6 @@
 * Thomas PIQUÉ
 * Pierre REGNARD
 
-### Teacher : 
-
-* Antoine CHANCEL
-
-#### Academic year: 2023-2024
-
-October 2023 - January 2024.
 
 ## Introduction
 
@@ -52,7 +56,7 @@ On the menu page, you can choose between 2 types of puzzle : sliding puzzle and 
 
 Free movement puzzle :
 - the grid is empty
-- the avalaible pieces are below
+- the available pieces are below
 - to place a piece, click first on the piece below and then on a cell
 - click on a non-empty cell to remove a piece
 - shuffle button will shuffle the available pieces
