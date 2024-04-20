@@ -9,6 +9,8 @@
 
 
 # Requirements
+import import_data as imp
+
 from flask import Flask, request, session, jsonify, render_template, redirect, url_for
 from werkzeug.utils import secure_filename
 import os
@@ -19,11 +21,31 @@ import random
 
 from colorization_utils import ColorizationNet
 
+# Paramètres YAML
+config = imp.import_yaml_config("config.yaml")
+IMAGES_URL = config.get("images_url")
+EXAMPLES_URL = f"{IMAGES_URL}/examples"
+EXAMPLES_WITH_COLOR_URL = f"{IMAGES_URL}/examples_with_color"
+#EXAMPLES_URL = "https://minio.lab.sspcloud.fr/pregnard/MEP_images/images/examples"
+#EXAMPLES_WITH_COLOR_URL = "https://minio.lab.sspcloud.fr/pregnard/MEP_images/images/examples_with_color"
+
+
+# Create the local data folder
+examples_folder = os.path.join("static", "images/examples")
+os.makedirs(examples_folder, exist_ok=True)
+
+examples_with_color_folder = os.path.join("static", "images/examples_with_color")
+os.makedirs(examples_with_color_folder, exist_ok=True)
+
+# Number of example files
+NUM_EXAMPLES = 21
+
+# Download the 'images/examples' and ' images/examples_with_colors' data folder from the provided URL
+imp.download_files(EXAMPLES_URL, examples_folder, NUM_EXAMPLES)
+imp.download_files(EXAMPLES_WITH_COLOR_URL, examples_with_color_folder, NUM_EXAMPLES)
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
-
-
 
 ###################### COLORIZATION WITH DEEP LEARNING ######################
 
@@ -128,7 +150,7 @@ def create_puzzle(base_image_path: str, base_image_color_path: str, rows: int = 
             bottom_color = top_color + piece_color_height
     # each puzzle piece is cut from the whole image : 
             piece_image_color = original_image_color.crop((left_color, top_color, right_color, bottom_color))
-            piece_image_color.save(f"static/images/sliced_color_{j}_{i}.png")
+            piece_image_color.save(f"static/ima ges/sliced_color_{j}_{i}.png")
             
     
     # Pictures must be rectangular or squared.
