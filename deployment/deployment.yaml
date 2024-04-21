@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: puzzle
-        image: linogaliana/application-correction:latest
+        image: python:3.9.4
         ports:
         - containerPort: 5000
