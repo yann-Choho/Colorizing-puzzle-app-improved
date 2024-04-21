@@ -3,15 +3,17 @@
 """
 READ FIRST ! 
 
-For this code to work, you first have to download and unzip the color images into the \images_folder\color\color_images folder.
-
+For this code to work, you first have to download and unzip the color images into 
+the \images_folder\color\color_images folder.
 """
 
 #%% imports
 import torch #requirement: pip install pytorch. Version depends on your build,
              # if unsure, just install pytorch and it will run on the cpu instead of the gpu.
-import torch.nn as nn
-import torch.optim as optim
+#import torch.nn as nn
+from torch import nn
+#import torch.optim as optim
+from torch import optim
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import os
@@ -42,7 +44,8 @@ if __name__ == "__main__":
     # Set device
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-#%% Load the dataset, split it into train and test. Fix the seed to have the same split for everybody.
+#%% Load the dataset, split it into train and test. 
+# Fix the seed to have the same split for everybody.
     img_path=r".\images_folder\color"
     inp=img_path
     output=r".\images_folder\split"
@@ -55,9 +58,12 @@ if __name__ == "__main__":
         transforms.TrivialAugmentWide(num_magnitude_bins=31),
         transforms.ToTensor()
     ])
-    # TrivialAugment is a Data Augmentation method: an augmentation method is chosen in a range of trivial augmentations
-    # (change in lighting, image flip, etc.), applied at a given magnitude.
-    # Read more here: https://pytorch.org/vision/main/generated/torchvision.transforms.TrivialAugmentWide.html
+    """
+    TrivialAugment is a Data Augmentation method: an augmentation method is chosen
+    in a range of trivial augmentations (change in lighting, image flip, etc.), 
+    applied at a given magnitude.
+    Read more here: https://pytorch.org/vision/main/generated/torchvision.transforms.TrivialAugmentWide.html
+    """
 
     test_transform = transform = transforms.Compose([
         transforms.ToTensor(),
@@ -82,6 +88,15 @@ if __name__ == "__main__":
 
     # Convert RGB image to grayscale
     def rgb_to_gray(img : Image.Image) -> Image.Image:
+        """
+        Function changing RGB images to grayscale
+        
+        Args :
+            img : input RGB image
+            
+        Returns :
+            Image.Image : grayscale image
+        """
         return img.mean(dim=1, keepdim=True)
 
 
@@ -116,5 +131,3 @@ if __name__ == "__main__":
     torch.save(model.state_dict(), params_file_path)
 
     print("Parameters saved")
-
-

@@ -1,10 +1,16 @@
-# unit tests for the flask app
-# We check if each route leads to the correct page
+# -*- coding: utf-8 -*-
 
+"""
+Unit tests for the flask app
+We check if each route leads to the correct page
+"""
+
+# importations
 import unittest
 from app import app
 
 class FlaskAppTests(unittest.TestCase):
+    """ Class defining unit tests for Flask puzzle application routes."""
 
     def setUp(self):
         # Create a test client
