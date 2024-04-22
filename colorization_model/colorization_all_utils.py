@@ -3,25 +3,14 @@
 
 #%% imports
 import torch #requirement: pip install pytorch. Version depends on your build,
-             # if unsure, just install pytorch and it will run on the cpu instead of the gpu.
+# if unsure, just install pytorch and it will run on the cpu instead of the gpu.
 #import torch.nn as nn
 from torch import nn
-#import torch.optim as optim
-from torch import optim
-from torchvision import datasets, transforms
-from torch.utils.data import DataLoader
-import os
-import splitfolders #requirement: pip install split-folders==0.5.1
-from PIL import Image
 
-# Requirements
-from flask import Flask, request, session, jsonify, render_template, redirect, url_for
-from werkzeug.utils import secure_filename
-import os
-import torch
-from torchvision import transforms
 from PIL import Image
-import random
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 
 #%% Define the colorization model
@@ -67,16 +56,16 @@ class ColorizationNet(nn.Module):
 
 
 def rgb_to_gray(img : Image.Image) -> Image.Image:
-        """
-        Function changing RGB images to grayscale
+    """
+    Function changing RGB images to grayscale
+    
+    Args :
+        img : input RGB image
         
-        Args :
-            img : input RGB image
-            
-        Returns :
-            Image.Image : grayscale image
-        """
-        return img.mean(dim=1, keepdim=True)
+    Returns :
+        Image.Image : grayscale image
+    """
+    return img.mean(dim=1, keepdim=True)
 
 def imshow(img : Image.Image) -> None :
     """

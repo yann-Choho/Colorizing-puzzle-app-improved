@@ -55,7 +55,7 @@ def imshow(img : Image.Image) -> None :
 
 output=os.path.join(parent_path,r"images_folder\split")
 try:
-    images = os.listdir(output+"\\test\color_images") 
+    images = os.listdir(output+"\\test\color_images")
     #This folder is created if colorization_training is ran.
 except FileNotFoundError:
     images=[]
@@ -103,13 +103,13 @@ if len(images)>0:
     ax[2].imshow(colorized_img)
     ax[2].set_title("Colorized Image")
     ax[2].axis('off')  # Hide axes
-    
+   
     plt.tight_layout()  # Adjust spacing
     plt.show()
 
 #%% showing the colorization of a random image from the Internet.
 img = Image.open(os.path.join(parent_path,r"images_folder\Fleurs-des-champs.jpeg"))
-    
+
 gray_img = img.convert("L")
 
 # Turn it into a tensor
