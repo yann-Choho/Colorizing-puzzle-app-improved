@@ -1,4 +1,4 @@
-name: ci
+name: Construction image Docker
 
 on:
   push:
@@ -26,4 +26,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: user/app:latest
+          tags: yannchoho/puzzle-colorization:latest
