@@ -20,7 +20,10 @@ import os
 import splitfolders #requirement: pip install split-folders==0.5.1
 from PIL import Image
 
+from colorization_all_utils import ColorizationNet, rgb_to_gray
+
 #%% Define the colorization model
+"""
 class ColorizationNet(nn.Module):
     def __init__(self):
         super(ColorizationNet, self).__init__()
@@ -38,7 +41,22 @@ class ColorizationNet(nn.Module):
         x = torch.sigmoid(self.conv4(x))
 
         return x
-
+"""
+        
+"""
+# Convert RGB image to grayscale
+    def rgb_to_gray(img : Image.Image) -> Image.Image:
+        
+        Function changing RGB images to grayscale
+        
+        Args :
+            img : input RGB image
+            
+        Returns :
+            Image.Image : grayscale image
+        
+        return img.mean(dim=1, keepdim=True)
+"""
 
 if __name__ == "__main__":
     # Set device
@@ -84,20 +102,6 @@ if __name__ == "__main__":
     # Loss and optimizer
     criterion = nn.MSELoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
-
-
-    # Convert RGB image to grayscale
-    def rgb_to_gray(img : Image.Image) -> Image.Image:
-        """
-        Function changing RGB images to grayscale
-        
-        Args :
-            img : input RGB image
-            
-        Returns :
-            Image.Image : grayscale image
-        """
-        return img.mean(dim=1, keepdim=True)
 
 
     # Training loop

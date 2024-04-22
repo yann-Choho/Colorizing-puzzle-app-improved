@@ -14,7 +14,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 
-from colorization_training import ColorizationNet
+# from colorization_training import ColorizationNet
+from colorization_all_utils import ColorizationNet, imshow
 #%%
 
 parent_path=os.path.dirname(os.getcwd())
@@ -32,14 +33,16 @@ model.load_state_dict(torch.load(path_params))
 
 print("Model set up with optimal parameters provided")
 
+
 # %% defining a function to show any image
+"""
 def imshow(img : Image.Image) -> None :
-    """
+    
     Convert from Tensor image and display
 
     Args : 
         img : image to display
-    """
+    
 
     img = img / 2 + 0.5  # Unnormalize
     npimg = img.numpy()
@@ -48,6 +51,7 @@ def imshow(img : Image.Image) -> None :
     else:
         plt.imshow(np.transpose(npimg, (1, 2, 0)))
 # %%
+"""
 
 output=os.path.join(parent_path,r"images_folder\split")
 try:

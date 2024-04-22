@@ -17,7 +17,8 @@ from torchvision import transforms
 from PIL import Image
 import random
 
-from colorization_utils import ColorizationNet
+#from colorization_utils import ColorizationNet
+from colorization_model.colorization_all_utils import ColorizationNet
 
 
 app = Flask(__name__)
