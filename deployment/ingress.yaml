@@ -8,9 +8,9 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - mep.colorizing.puzzle.kub.sspcloud.fr
+    - puzzle.kub.sspcloud.fr
   rules:
-  - host: mep.colorizing.puzzle.kub.sspcloud.fr
+  - host: puzzle.kub.sspcloud.fr
     http:
       paths:
       - path: /
