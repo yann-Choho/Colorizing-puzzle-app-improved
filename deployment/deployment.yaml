@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: puzzle
-        image: python:3.9.4
+        image: yannchoho/puzzle-colorization:latest
         ports:
         - containerPort: 5000
