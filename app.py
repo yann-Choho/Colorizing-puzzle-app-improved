@@ -41,8 +41,8 @@ os.makedirs(examples_with_color_folder, exist_ok=True)
 NUM_EXAMPLES = 21
 
 # Download the 'images/examples' and ' images/examples_with_colors' data folder from the provided URL
-imp.download_files(EXAMPLES_URL, examples_folder, NUM_EXAMPLES)
-imp.download_files(EXAMPLES_WITH_COLOR_URL, examples_with_color_folder, NUM_EXAMPLES)
+#imp.download_files(EXAMPLES_URL, examples_folder, NUM_EXAMPLES)
+#imp.download_files(EXAMPLES_WITH_COLOR_URL, examples_with_color_folder, NUM_EXAMPLES)
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
@@ -150,7 +150,7 @@ def create_puzzle(base_image_path: str, base_image_color_path: str, rows: int = 
             bottom_color = top_color + piece_color_height
     # each puzzle piece is cut from the whole image : 
             piece_image_color = original_image_color.crop((left_color, top_color, right_color, bottom_color))
-            piece_image_color.save(f"static/ima ges/sliced_color_{j}_{i}.png")
+            piece_image_color.save(f"static/images/sliced_color_{j}_{i}.png")
             
     
     # Pictures must be rectangular or squared.
