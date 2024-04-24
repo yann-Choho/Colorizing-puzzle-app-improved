@@ -41,8 +41,16 @@ os.makedirs(examples_with_color_folder, exist_ok=True)
 NUM_EXAMPLES = 21
 
 # Download the 'images/examples' and ' images/examples_with_colors' data folder from the provided URL
-#imp.download_files(EXAMPLES_URL, examples_folder, NUM_EXAMPLES)
-#imp.download_files(EXAMPLES_WITH_COLOR_URL, examples_with_color_folder, NUM_EXAMPLES)
+try:
+    imp.download_files(EXAMPLES_URL, examples_folder, NUM_EXAMPLES)
+except Exception as e:
+    print(f"An error occurred while downloading examples files from S3: {e}")
+
+try:
+    imp.download_files(EXAMPLES_WITH_COLOR_URL, examples_with_color_folder, NUM_EXAMPLES)
+except Exception as e:
+    print(f"An error occurred while downloading examples-with-color files from S3: {e}")
+
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
