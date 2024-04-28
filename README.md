@@ -1,4 +1,4 @@
-
+[![Construction image Docker](https://github.com/yann-Choho/Colorizing-puzzle-app-improved/actions/workflows/prod.yaml/badge.svg?branch=pierreBranch)](https://github.com/yann-Choho/Colorizing-puzzle-app-improved/actions/workflows/prod.yaml)
 # ENSAE Paris | Institut Polytechnique de Paris
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/LOGO-ENSAE.png/900px-LOGO-ENSAE.png" width="300">
@@ -33,9 +33,18 @@ This application allows you to solve a puzzle of a black-and-white image. Once t
 
 
 ## How to run the app
+You don't need to run the underlying model to play with the puzzle, the app is avaible with this link https://puzzle.kub.sspcloud.fr/.
 
-You don't need to run the underlying model to play with the puzzle, just run the app with Docker and have fun !
+If you want to run it manualy on your computer, then follow the step bellow :
 
+- Option 1 : Clone this repository, then install the requirements library
+```python
+pip install -r requirements.txt
+```
+and launch app.py
+
+- option 2 :  follow the step describe in option 1, but instead of directly launching app.py, Run with Docker and have fun !
+  
 First, build the docker image by running the following command in a terminal :
 
 ```bash
@@ -50,6 +59,10 @@ docker run -p 8000:8000 puzzle_image
 
 The app runs on `http://0.0.0.0:8000/`. If this url does not work, try `http://127.0.0.1:8000/` or `http://localhost:8000/`. If the colored image doesn't load after completing the puzzle, try using another browser.
 
+- Option 3 : Instead of cloning the repo, you can upload the image directly from docker hub  and launch your container based on this image.
+```bash
+docker pull yannchoho/puzzle-colorization
+```
 ## Description of the puzzle app
 
 On the menu page, you can choose between 2 types of puzzle : sliding puzzle and free movement puzzle.
@@ -97,32 +110,4 @@ The scripts relevant to the scraping and the training of the images don't have t
   <br>
   <em>Colorized image</em>
 </p>
-
-</section>
-<section id="parcours-dashboard-application-interactive" class="level3">
-<h3 class="anchored" data-anchor-id="parcours-dashboard-application-interactive">Parcours dashboard / application interactive</h3>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Objectif
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A partir d’un projet existant ou d’un projet que vous construirez, développer une application interactive ou un <em>dashboard</em> statique répondant à une problématique métier, puis déployer sur une infrastructure de production.</p>
-</div>
-</div>
-<p><strong>Étapes</strong> :</p>
-<ul class="task-list">
-<li><label><input type="checkbox">Respecter la <em>checklist</em> des bonnes pratiques de développement</label></li>
-<li><label><input type="checkbox">Développer une application interactive <code>Streamlit</code> ou un <em>dashboard</em> statique avec <code>Quarto</code> répondant à une problématique métier</label></li>
-<li><label><input type="checkbox">Créer une image <code>Docker</code> permettant d’exposer l’application en local</label></li>
-<li><label><input type="checkbox">Déployer l’application sur le <code>SSP Cloud</code> (application interactive) ou sur <code>Github Pages</code> (site statique)</label></li>
-<li><label><input type="checkbox">Customiser le thème, le CSS etc. pour mettre en valeur au maximum les résultats de la publication et les messages principaux</label></li>
-<li><label><input type="checkbox">Automatiser l’ingestion des données en entrée pour que le site <em>web</em> se mette à jour régulièrement</label></li>
-<li><label><input type="checkbox">Industrialiser le déploiement en mode <code>GitOps</code> avec <code>ArgoCD</code></label></li>
-<li><label><input type="checkbox">Gérer le monitoring de l’application : <em>logs</em>, métriques de suivi des performances, etc.</label></li>
-</ul>
 
