@@ -4,23 +4,24 @@
 
 # Each puzzle page (sliding / free) has its own :
     # .html to specify display
-    # .js to specify interactive content 
+    # .js to specify interactive content
     # The .css is common
 
 
 # Requirements
+import os
+import random
 import import_data as imp
 
 from flask import Flask, request, session, jsonify, render_template, redirect, url_for
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
-import os
 import torch
 from torchvision import transforms
 from PIL import Image
-import random
 
-from colorization_utils import ColorizationNet
+#from colorization_utils import ColorizationNet
+from colorization_model.colorization_all_utils import ColorizationNet
 
 
 
@@ -61,9 +62,15 @@ app.secret_key = 'secret_key'
 
 ###################### COLORIZATION WITH DEEP LEARNING ######################
 
-# Function to load the model
-# we use the colorization net defined in colorization_utils.py
 def load_model(model_path: str) -> ColorizationNet:
+    """Function to load the model
+
+    Args:
+        model_path (str): location of the file containing optimal parameters
+
+    Returns:
+        ColorizationNet: neural network set with chosen parameters
+    """
     model = ColorizationNet()
     model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
     model.eval()
@@ -100,7 +107,7 @@ def colorize_image(image_path: str, model, output_format: str = 'png') -> str:
     # Convert the output to PIL image and save it
     colorized_image = transforms.ToPILImage()(colorized.squeeze(0))
     # Modify the file path based on the specified output format
-    colorized_image_path = 'static/images/colorized_image.png'   
+    colorized_image_path = 'static/images/colorized_image.png'
     colorized_image.save(colorized_image_path, format=output_format.upper())
 
     return colorized_image_path
@@ -113,23 +120,44 @@ cols = 3
 
 # Initiate a class for the puzzle pieces
 class PuzzlePiece:
+    """class for puzzle pieces
+
+    Attributes :
+        id : correct rank of the piece in the puzzle
+        image : for display
+        order : actual rank of the piece in the puzzle
+        width : for display
+        height : for display
+    """
     def __init__(self, id: int, image: str, order: int, width: float, height: float):
-        self.id = id  # correct rank of the piece in the puzzle
-        self.image = image # for display
-        self.order = order # actual rank of the piece in the puzzle
-        self.width = width # for display
-        self.height = height # for display
+        self.id = id
+        self.image = image
+        self.order = order
+        self.width = width
+        self.height = height
 
         # Compute row and col based on the shuffled order
         self.row = order // cols # Example : the row of the 4th piece in a 3x3
         # puzzle is 2
-        self.col = order % cols # Example : the column of the 4th piece in a 
+        self.col = order % cols # Example : the column of the 4th piece in a
         # 3x3 puzzle is 1
 
 
 
 def create_puzzle(base_image_path: str, base_image_color_path: str, rows: int = rows, cols: int = cols) -> list :
-    # Black and White
+    """function creating the puzzle
+
+    Args:
+        base_image_path (str): chemin d'accès à l'image en noir et blanc
+        base_image_color_path (str): chemin d'accès à l'image en couleurs
+        rows (int, optional): Number of raws. Defaults to rows.
+        cols (int, optional): Number of columns. Defaults to cols.
+
+    Returns:
+        list: list of PuzzlePiece objects representing the full puzzle 
+    """
+
+    # 1. Black and White
 
     # Perform image slicing and save sliced images
     original_image = Image.open(base_image_path)
@@ -143,10 +171,12 @@ def create_puzzle(base_image_path: str, base_image_color_path: str, rows: int = 
             top = j * piece_height
             right = left + piece_width
             bottom = top + piece_height
-            # each puzzle piece is cut from the whole image : 
+            # each puzzle piece is cut from the whole image :
             piece_image = original_image.crop((left, top, right, bottom))
             piece_image.save(f"static/images/sliced_{j}_{i}.png")
-            
+
+
+    # 2. Color
 
     # Perform image slicing and save sliced images
     original_image_color = Image.open(base_image_color_path)
@@ -160,11 +190,11 @@ def create_puzzle(base_image_path: str, base_image_color_path: str, rows: int = 
             top_color = j * piece_color_height
             right_color = left_color + piece_color_width
             bottom_color = top_color + piece_color_height
-    # each puzzle piece is cut from the whole image : 
+    # each puzzle piece is cut from the whole image :
             piece_image_color = original_image_color.crop((left_color, top_color, right_color, bottom_color))
             piece_image_color.save(f"static/images/sliced_color_{j}_{i}.png")
-            
-    
+
+
     # Pictures must be rectangular or squared.
     #  Determine the scaling factor to ensure the smallest dimension is 512px
     scaling_factor = max(512 / image_width, 512 / image_height)
@@ -204,7 +234,7 @@ def create_puzzle(base_image_path: str, base_image_color_path: str, rows: int = 
 ##### THE DIFFERENT ROUTES OF THE FLASK APP #####
 
 
-# Menu 
+# Menu
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -218,10 +248,10 @@ def sliding_pieces():
     # get the path of the image saved in the session
     base_image_path = session.get('puzzle_image_path', 'static/images/puzzle.png')
     base_image_color_path = session.get('puzzle_image_color_path', 'static/images/puzzle_color.png')
-    
+
     # create the puzzle with the image selected
     puzzle = create_puzzle(base_image_path, base_image_color_path, rows, cols)
-    
+
     return render_template('sliding_pieces.html', puzzle=puzzle)
 
 
@@ -229,14 +259,14 @@ def sliding_pieces():
 def free_pieces():
     session['previous_url'] = url_for('free_pieces')
     session['current_url'] = url_for('free_pieces')
-    
+
     # Use the same image paths as those defined in the session
 
     base_image_path = session.get('puzzle_image_path', 'static/images/puzzle.png')
     base_image_color_path = session.get('puzzle_image_color_path', 'static/images/puzzle_color.png')
-    
+
     puzzle = create_puzzle(base_image_path, base_image_color_path, rows, cols)
-    
+
     return render_template('free_pieces.html', puzzle=puzzle)
 
 # Select image
@@ -301,4 +331,3 @@ def upload_image_route():
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
-

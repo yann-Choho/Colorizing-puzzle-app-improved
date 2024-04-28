@@ -98,3 +98,31 @@ The scripts relevant to the scraping and the training of the images don't have t
   <em>Colorized image</em>
 </p>
 
+</section>
+<section id="parcours-dashboard-application-interactive" class="level3">
+<h3 class="anchored" data-anchor-id="parcours-dashboard-application-interactive">Parcours dashboard / application interactive</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Objectif
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A partir d’un projet existant ou d’un projet que vous construirez, développer une application interactive ou un <em>dashboard</em> statique répondant à une problématique métier, puis déployer sur une infrastructure de production.</p>
+</div>
+</div>
+<p><strong>Étapes</strong> :</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Respecter la <em>checklist</em> des bonnes pratiques de développement</label></li>
+<li><label><input type="checkbox">Développer une application interactive <code>Streamlit</code> ou un <em>dashboard</em> statique avec <code>Quarto</code> répondant à une problématique métier</label></li>
+<li><label><input type="checkbox">Créer une image <code>Docker</code> permettant d’exposer l’application en local</label></li>
+<li><label><input type="checkbox">Déployer l’application sur le <code>SSP Cloud</code> (application interactive) ou sur <code>Github Pages</code> (site statique)</label></li>
+<li><label><input type="checkbox">Customiser le thème, le CSS etc. pour mettre en valeur au maximum les résultats de la publication et les messages principaux</label></li>
+<li><label><input type="checkbox">Automatiser l’ingestion des données en entrée pour que le site <em>web</em> se mette à jour régulièrement</label></li>
+<li><label><input type="checkbox">Industrialiser le déploiement en mode <code>GitOps</code> avec <code>ArgoCD</code></label></li>
+<li><label><input type="checkbox">Gérer le monitoring de l’application : <em>logs</em>, métriques de suivi des performances, etc.</label></li>
+</ul>
+
