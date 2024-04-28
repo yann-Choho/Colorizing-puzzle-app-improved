@@ -72,7 +72,7 @@ function submitImageUploadForm() {
                         puzzlePieces.forEach(piece => {
         const row = parseInt(piece.dataset.row);
         const col = parseInt(piece.dataset.col);
-        piece.style.backgroundImage = `url('../5000/static/images/sliced_color_${row}_${col}.png')`;
+        piece.style.backgroundImage = `url('/static/images/sliced_color_${row}_${col}.png')`;
         piece.style.backgroundSize = 'cover';
     });
                 }
@@ -135,8 +135,8 @@ function submitImageUploadForm() {
 
 // Fonction pour télécharger l'image
 function downloadImage() {
-    // URL directe vers l'image colorisée stockée dans ../5000/static/images
-    const downloadUrl = '../5000/static/images/colorized_image.png';
+    // URL directe vers l'image colorisée stockée dans /static/images
+    const downloadUrl = '/static/images/colorized_image.png';
 
     // Crée un élément 'a' pour déclencher le téléchargement
     const link = document.createElement('a');
@@ -157,7 +157,7 @@ if (isVictory()) {
     puzzlePieces.forEach(piece => {
         const row = parseInt(piece.dataset.row);
         const col = parseInt(piece.dataset.col);
-        piece.style.backgroundImage = `url('../5000/static/images/sliced_color_${row}_${col}.png')`;
+        piece.style.backgroundImage = `url('/static/images/sliced_color_${row}_${col}.png')`;
         piece.style.backgroundSize = 'cover';
     });
 
@@ -193,8 +193,8 @@ if (isVictory()) {
    
 }
 function downloadColorizedImage() {
-    // URL directe vers l'image colorisée stockée dans ../5000/static/images
-    const downloadUrl = '../5000/static/images/colorized_image.png';
+    // URL directe vers l'image colorisée stockée dans /static/images
+    const downloadUrl = '/static/images/colorized_image.png';
 
     // Crée un élément 'a' pour déclencher le téléchargement
     const link = document.createElement('a');

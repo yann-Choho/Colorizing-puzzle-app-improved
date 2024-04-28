@@ -14,16 +14,19 @@ import random
 import import_data as imp
 
 from flask import Flask, request, session, jsonify, render_template, redirect, url_for
-from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import torch
 from torchvision import transforms
 from PIL import Image
+<<<<<<< HEAD
 
 #from colorization_utils import ColorizationNet
 from colorization_model.colorization_all_utils import ColorizationNet
+=======
+import random
 
-
+from colorization_utils import ColorizationNet
+>>>>>>> parent of a34f368 (Patch for proxy/5000 in URL)
 
 # Paramètres YAML
 config = imp.import_yaml_config("config.yaml")
@@ -57,7 +60,6 @@ except Exception as e:
 
 
 app = Flask(__name__)
-CORS(app)
 app.secret_key = 'secret_key'
 
 ###################### COLORIZATION WITH DEEP LEARNING ######################
@@ -306,7 +308,7 @@ def allowed_file(filename) -> bool :
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-UPLOAD_FOLDER = '../5000/static/images/'
+UPLOAD_FOLDER = 'static/images/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 @app.route('/upload-image', methods=['GET', 'POST'])
 def upload_image_route():
@@ -330,4 +332,12 @@ def upload_image_route():
 
 
 if __name__ == '__main__':
+<<<<<<< HEAD
+<<<<<<< HEAD
     app.run(port=5000, debug=True)
+=======
+=======
+>>>>>>> parent of a34f368 (Patch for proxy/5000 in URL)
+    app.run(port=8000, debug=True)
+
+>>>>>>> parent of a34f368 (Patch for proxy/5000 in URL)
