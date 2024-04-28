@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - 'pierreBranch'
+      - pierreBranch
     tags:
 
 jobs:
