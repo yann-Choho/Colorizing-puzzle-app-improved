@@ -11,7 +11,10 @@
 # Requirements
 import os
 import random
+import import_data as imp
+
 from flask import Flask, request, session, jsonify, render_template, redirect, url_for
+from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import torch
 from torchvision import transforms
@@ -21,10 +24,41 @@ from PIL import Image
 from colorization_model.colorization_all_utils import ColorizationNet
 
 
+
+# Paramètres YAML
+config = imp.import_yaml_config("config.yaml")
+IMAGES_URL = config.get("images_url")
+EXAMPLES_URL = f"{IMAGES_URL}/examples"
+EXAMPLES_WITH_COLOR_URL = f"{IMAGES_URL}/examples_with_color"
+#EXAMPLES_URL = "https://minio.lab.sspcloud.fr/pregnard/MEP_images/images/examples"
+#EXAMPLES_WITH_COLOR_URL = "https://minio.lab.sspcloud.fr/pregnard/MEP_images/images/examples_with_color"
+
+
+# Create the local data folder
+examples_folder = os.path.join("static", "images/examples")
+os.makedirs(examples_folder, exist_ok=True)
+
+examples_with_color_folder = os.path.join("static", "images/examples_with_color")
+os.makedirs(examples_with_color_folder, exist_ok=True)
+
+# Number of example files
+NUM_EXAMPLES = 21
+
+# Download the 'images/examples' and ' images/examples_with_colors' data folder from the provided URL
+try:
+    imp.download_files(EXAMPLES_URL, examples_folder, NUM_EXAMPLES)
+except Exception as e:
+    print(f"An error occurred while downloading examples files from S3: {e}")
+
+try:
+    imp.download_files(EXAMPLES_WITH_COLOR_URL, examples_with_color_folder, NUM_EXAMPLES)
+except Exception as e:
+    print(f"An error occurred while downloading examples-with-color files from S3: {e}")
+
+
 app = Flask(__name__)
+CORS(app)
 app.secret_key = 'secret_key'
-
-
 
 ###################### COLORIZATION WITH DEEP LEARNING ######################
 
@@ -272,7 +306,7 @@ def allowed_file(filename) -> bool :
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-UPLOAD_FOLDER = 'static/images/'
+UPLOAD_FOLDER = '../5000/static/images/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 @app.route('/upload-image', methods=['GET', 'POST'])
 def upload_image_route():
@@ -296,4 +330,4 @@ def upload_image_route():
 
 
 if __name__ == '__main__':
-    app.run(port=8000, debug=True)
+    app.run(port=5000, debug=True)

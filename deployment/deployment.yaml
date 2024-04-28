@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: puzzle-deployment
+  labels:
+    app: puzzle
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: puzzle
+  template:
+    metadata:
+      labels:
+        app: puzzle
+    spec:
+      containers:
+      - name: puzzle
+        image: yannchoho/puzzle-colorization:latest
+        ports:
+        - containerPort: 5000

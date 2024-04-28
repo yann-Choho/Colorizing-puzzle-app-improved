@@ -6,8 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles_jeu.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_sliding_piece.css') }}">
+    <link rel="stylesheet" href="../5000/static/css/styles_jeu.css">
+    <link rel="stylesheet" href="../5000/static/css/style_sliding_piece.css">
 </head>
 
 
@@ -23,7 +23,7 @@
         data-row="{{ cell.row }}"
         data-col="{{ cell.col }}" 
         data-order="{{ cell.order }}"
-            style="order: {{ cell.order }}; width: {{ cell.width }}px; height: {{ cell.height }}px; {% if cell.id != 0 %} background-image: url('{{ cell.image }}');{% endif %} background-position: -{{ cell.col * cell.width }}px -{{ cell.row * cell.height }}px;">
+            style="order: {{ cell.order }}; width: {{ cell.width }}px; height: {{ cell.height }}px; {% if cell.id != 0 %} background-image: url('../5000/{{ cell.image }}');{% endif %} background-position: -{{ cell.col * cell.width }}px -{{ cell.row * cell.height }}px;">
         </div>
         {% endfor %}
         {% endfor %}
@@ -35,17 +35,17 @@
 <!-- Le bouton pour activer l'upload d'image -->
 <div id="button-container">
     <button id="shuffle-button" class="button-style" onclick="shufflePieces()">Melanger</button>
-    <a href="{{ url_for('index') }}" id="index-link" class="button-style">Accueil</a>
+    <a href="../5000/" id="index-link" class="button-style">Accueil</a>
     <!-- Bouton pour activer le formulaire d'upload d'image -->
     <button class="button-style" onclick="document.getElementById('imageUpload').click()">Importer mon image</button>
     <!-- ... Autres boutons ... -->
-    <a href="{{ url_for('select_image') }}" class="button-style">Choisir une Image</a>    
+    <a href="../5000/select-image" class="button-style">Choisir une Image</a>    
     <button id="downloadButton" class="button-style" onclick="downloadColorizedImage()">Télécharger l'Image</button>
 
 </div>
 
 <!-- Formulaire d'upload d'image (masqué) -->
-<form id="imageUploadForm" action="{{ url_for('upload_image_route') }}" method="post" enctype="multipart/form-data" style="display: none;">
+<form id="imageUploadForm" action="../5000/upload-image" method="post" enctype="multipart/form-data" style="display: none;">
     <input type="file" id="imageUpload" name="file" onchange="submitImageUploadForm()" required>
     <!-- Pas besoin de bouton 'submit' ici car le formulaire sera soumis par JavaScript -->
 </form>
@@ -65,7 +65,7 @@
             <h1>Sliding Puzzle</h1>
     </div>
         <!-- Call the JavaScript file -->
-    <script src="{{ url_for('static', filename='js/sliding_pieces.js') }}"></script>
+        <script src="../5000/static/js/sliding_pieces.js"></script>
     
 
 </body>

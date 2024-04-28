@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: puzzle-ingress
+  annotations:
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - puzzle.kub.sspcloud.fr
+  rules:
+  - host: puzzle.kub.sspcloud.fr
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: puzzle-service
+            port:
+              number: 80

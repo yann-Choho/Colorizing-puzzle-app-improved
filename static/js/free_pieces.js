@@ -76,7 +76,7 @@ const shuffleButton = document.getElementById('shuffle-button');
         });
 
         // Initialize puzzle pieces with their images and dimensions
-        const imageUrl = `/static/images/sliced_${Math.floor(index / 3)}_${index % 3}.png`;
+        const imageUrl = `../5000/static/images/sliced_${Math.floor(index / 3)}_${index % 3}.png`;
         
         // Create a temporary image to get the original dimensions
         const tempImage = new Image();
@@ -150,7 +150,7 @@ function updatePuzzle() {
         // Update the background image of each cell based on the grid state
         const pieceIndex = puzzleGrid[index] - 1;
         if (pieceIndex >= 0 && pieceIndex < puzzlePieces.length) {
-            const imageUrl = `/static/images/sliced_${Math.floor(pieceIndex / 3)}_${pieceIndex % 3}.png`;
+            const imageUrl = `../5000/static/images/sliced_${Math.floor(pieceIndex / 3)}_${pieceIndex % 3}.png`;
             cell.style.backgroundImage = `url('${imageUrl}')`;
             cell.style.backgroundSize = 'cover';  // Add this line to set background size to cover
         } else {
@@ -176,7 +176,7 @@ function updatePuzzle() {
         if (JSON.stringify(puzzleGrid) === JSON.stringify(correctOrder)) {
             // Replace puzzle with full colored pieces
             gridCells.forEach((cell, index) =>{
-                const imageUrl = `/static/images/sliced_color_${Math.floor(index / 3)}_${index % 3}.png`;
+                const imageUrl = `../5000/static/images/sliced_color_${Math.floor(index / 3)}_${index % 3}.png`;
                 cell.style.backgroundImage = `url('${imageUrl}')`;
                 cell.style.backgroundSize = 'cover';
             });
@@ -188,7 +188,7 @@ function updatePuzzle() {
 
 function downloadColorizedImage() {
     // URL directe vers l'image colorisée stockée dans /static/images
-    const downloadUrl = '/static/images/colorized_image.png';
+    const downloadUrl = '../5000/static/images/colorized_image.png';
 
     // Crée un élément 'a' pour déclencher le téléchargement
     const link = document.createElement('a');

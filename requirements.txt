@@ -2,6 +2,7 @@
 --index-url https://download.pytorch.org/whl/cpu #url for pytorch
 --extra-index-url https://pypi.org/simple #url for other packages
 
+pyyaml
 torch==2.1.2
 torchvision==0.16.2
 pytest==7.4.0
@@ -11,3 +12,4 @@ split-folders==0.5.1
 matplotlib==3.8.0
 numpy==1.26.0
 flask==3.0.0
+flask-cors==4.0.0
