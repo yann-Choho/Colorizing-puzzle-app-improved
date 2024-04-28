@@ -18,15 +18,9 @@ from werkzeug.utils import secure_filename
 import torch
 from torchvision import transforms
 from PIL import Image
-<<<<<<< HEAD
 
 #from colorization_utils import ColorizationNet
 from colorization_model.colorization_all_utils import ColorizationNet
-=======
-import random
-
-from colorization_utils import ColorizationNet
->>>>>>> parent of a34f368 (Patch for proxy/5000 in URL)
 
 # Paramètres YAML
 config = imp.import_yaml_config("config.yaml")
@@ -328,16 +322,8 @@ def upload_image_route():
             return redirect(current_url)
 
     # if get, display the download page
-    return render_template('index.html') # go back to the menu if an error occurs
+    return render_template('index.html')  #go back to the menu if an error occurs
 
 
 if __name__ == '__main__':
-<<<<<<< HEAD
-<<<<<<< HEAD
-    app.run(port=5000, debug=True)
-=======
-=======
->>>>>>> parent of a34f368 (Patch for proxy/5000 in URL)
     app.run(port=8000, debug=True)
-
->>>>>>> parent of a34f368 (Patch for proxy/5000 in URL)
