@@ -7,7 +7,7 @@ function shufflePieces() {
     const pieces = Array.from(container.children);
 
     // Fisher-Yates shuffle algorithm
-    for (let i = pieces.length - 1; i > 0; i--) {
+    for (let i = pieces.length; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         container.insertBefore(pieces[j], pieces[i]);
     }
