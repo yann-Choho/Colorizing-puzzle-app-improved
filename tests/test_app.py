@@ -7,6 +7,9 @@ We check if each route leads to the correct page
 
 # importations
 import unittest
+
+import sys
+sys.path.append('../Colorizing-puzzle-app-improved')
 from app import app
 
 class FlaskAppTests(unittest.TestCase):
