@@ -33,9 +33,9 @@ This application allows you to solve a puzzle of a black-and-white image. Once t
 
 
 ## How to run the app
-You don't need to run the underlying model to play with the puzzle, the app is avaible with this link https://puzzle.kub.sspcloud.fr/.
+You don't need to run the underlying model to play with the puzzle, the app is available with this link https://puzzle.kub.sspcloud.fr/.
 
-If you want to run it manualy on your computer, then follow the step bellow :
+If you want to run it manually on your computer, then follow the step bellow :
 
 - Option 1 : Clone this repository, then install the requirements library
 ```python

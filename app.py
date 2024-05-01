@@ -2,16 +2,11 @@
 
 ### === Main code for the Flask app === ###
 
-# Each puzzle page (sliding / free) has its own :
-    # .html to specify display
-    # .js to specify interactive content
-    # The .css is common
 
-
-# Requirements
+###################### REQUIREMENTS ######################
 import os
 import random
-import import_data as imp
+import data.import_data as imp
 
 from flask import Flask, request, session, jsonify, render_template, redirect, url_for
 from werkzeug.utils import secure_filename
@@ -19,19 +14,20 @@ import torch
 from torchvision import transforms
 from PIL import Image
 
-#from colorization_utils import ColorizationNet
 from colorization_model.colorization_all_utils import ColorizationNet
 
-# Paramètres YAML
-config = imp.import_yaml_config("config.yaml")
+
+
+###################### CONFIGURATION ######################
+config = imp.import_yaml_config("configuration/config.yaml")
 IMAGES_URL = config.get("images_url")
 EXAMPLES_URL = f"{IMAGES_URL}/examples"
 EXAMPLES_WITH_COLOR_URL = f"{IMAGES_URL}/examples_with_color"
-#EXAMPLES_URL = "https://minio.lab.sspcloud.fr/pregnard/MEP_images/images/examples"
-#EXAMPLES_WITH_COLOR_URL = "https://minio.lab.sspcloud.fr/pregnard/MEP_images/images/examples_with_color"
 
 
-# Create the local data folder
+###################### IMPORT EXAMPLE DATA ######################
+
+# Create the local data folders
 examples_folder = os.path.join("static", "images/examples")
 os.makedirs(examples_folder, exist_ok=True)
 
@@ -41,7 +37,8 @@ os.makedirs(examples_with_color_folder, exist_ok=True)
 # Number of example files
 NUM_EXAMPLES = 21
 
-# Download the 'images/examples' and ' images/examples_with_colors' data folder from the provided URL
+# Download the 'images/examples' and ' images/examples_with_colors' data folders
+# from the download URL provided in config.yaml
 try:
     imp.download_files(EXAMPLES_URL, examples_folder, NUM_EXAMPLES)
 except Exception as e:
@@ -53,8 +50,13 @@ except Exception as e:
     print(f"An error occurred while downloading examples-with-color files from S3: {e}")
 
 
+
+###################### APP ######################
+
 app = Flask(__name__)
 app.secret_key = 'secret_key'
+
+
 
 ###################### COLORIZATION WITH DEEP LEARNING ######################
 
