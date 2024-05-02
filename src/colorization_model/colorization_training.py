@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
 #%% Load the dataset, split it into train and test.
 # Fix the seed to have the same split for everybody.
-    IMG_PATH=r".\images_folder\color"
+    IMG_PATH= r"images_folder/color"
     INP=IMG_PATH
     OUTPUT=r".\images_folder\split"
 
