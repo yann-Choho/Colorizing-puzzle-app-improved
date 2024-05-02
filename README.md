@@ -99,6 +99,8 @@ The scripts relevant to the scraping and the training of the images don't have t
 
 ## Example of a grayscale image colorized with the model
 
+
+
 <p align="center">
   <img src="static/images/examples/_1.jpg" alt="Grayscale" width = "300">
   <br>
@@ -111,3 +113,62 @@ The scripts relevant to the scraping and the training of the images don't have t
   <em>Colorized image</em>
 </p>
 
+</section>
+<section id="track chosen :-dashboard-interactive-app" class="level3">
+<h3 class="anchored" data-anchor-id="parcours-dashboard-application-interactive">Track chosen :dashboard-interactive-app</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<p><strong>Objective</strong> :</p>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>From an existing project or a new project, develop an interactive app or a <em>dashboard</em> adressing a business issue, then deploy it on a production infrastructure.</p>
+</div>
+</div>
+<p><strong>Steps</strong> :</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Fulfil the <em>checklist</em> of development best practices</label></li>
+<li><label><input type="checkbox">Develop an interactive app <code>Streamlit</code> or a static <em>dashboard</em> with <code>Quarto</code> facing a business issue</label></li>
+<li><label><input type="checkbox">Create a <code>Docker</code> image for the local application</label></li>
+<li><label><input type="checkbox">Deploy the app on <code>SSP Cloud</code> (interactive app) or on <code>Github Pages</code> (static website)</label></li>
+<li><label><input type="checkbox">Customize the theme, the CSS etc. to best highlight the publication results and its main takeaway</label></li>
+<li><label><input type="checkbox">Automate the ingestion of input data so that the site <em>web</em> updates regularly</label></li>
+<li><label><input type="checkbox">industrialize deployment in <code>GitOps</code> mode with <code>ArgoCD</code></label></li>
+<li><label><input type="checkbox">Monitor the app : <em>logs</em>, performance metrics, etc.</label></li>
+</ul>
+
+
+</div>
+</div>
+</section>
+<section id="checklist-of-development-good-practices" class="level2">
+<h2 class="anchored" data-anchor-id="checklist-des-bonnes-pratiques-de-développement">checklist-of-development-good-practices</h2>
+<p>Below development good practices are a <strong>requirement of this course</strong>. They have to be applied to both <strong>group projects<strong> and </strong>individual code reviews</strong>.</p>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong><code>Git</code></strong> usage </label>
+<ul>
+<li>Presence of a <code>.gitignore</code> file adapted to the language and with additional rules to respect good versioning practices</li>
+<li>COllaborative work : use of branches and <em>pull requests</em></li>
+</ul></li>
+<li><label><input type="checkbox"><strong>Presence of a <code>README</code></strong> file introducing the project : context, objective, how to use it ?</label></li>
+<li><label><input type="checkbox"><strong>Presence of a <code>LICENSE</code></strong> file stating the licence (<em>open-source</em>) for project exploitation.</label></li>
+<li><label><input type="checkbox"><strong>Versioning of packages</strong> : presence of a <code>requirements.txt</code> file / environnement file <code>environment.yml</code> for <code>conda</code></label></li>
+<li><label><input type="checkbox"><strong>Code quality </strong></label>
+<ul>
+<li>Respect of community standards  : use a <em>linter</em> or a <em>formatter</em></li>
+<li>Modularity : a main script calling modules</li>
+</ul></li>
+<li><label><input type="checkbox"><strong>Projects structure</strong></label>
+<ul>
+<li>Respect of community standards (<code>cookiecutter</code>)</li>
+<li>Project modularity according to the model mentioned in the course:
+<ul>
+<li>Code on <code>GitHub</code></li>
+<li>Data on <code>S3</code></li>
+<li>Separated configuration files (<em>secrets</em>, etc.)</li>
+</ul></li>
+</ul></li>
