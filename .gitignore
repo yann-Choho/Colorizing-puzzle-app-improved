@@ -1,6 +1,6 @@
 # Specific .gitignore
 __pycache__/
-colorization_model/__pycache__/
+src/colorization_model/__pycache__/
 scraping_images/__pycache__/
 scraping_images/tests/__pycache__/
 tests/__pycache__/

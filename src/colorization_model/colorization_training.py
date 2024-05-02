@@ -138,7 +138,8 @@ if __name__ == "__main__":
     # save model parameters
 
     # path of the file
-    PARAMS_FILE_PATH = 'model1.pth'
+    # PARAMS_FILE_PATH = 'model1.pth'
+    PARAMS_FILE_PATH = 'src/colorization_model/model1.pth'
 
     # save parameters in this file
     torch.save(model.state_dict(), PARAMS_FILE_PATH)

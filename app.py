@@ -6,7 +6,7 @@
 ###################### REQUIREMENTS ######################
 import os
 import random
-import data.import_data as imp
+import src.import_data as imp
 
 from flask import Flask, request, session, jsonify, render_template, redirect, url_for
 from werkzeug.utils import secure_filename
@@ -14,7 +14,7 @@ import torch
 from torchvision import transforms
 from PIL import Image
 
-from colorization_model.colorization_all_utils import ColorizationNet
+from src.colorization_model.colorization_all_utils import ColorizationNet
 
 
 
@@ -75,7 +75,7 @@ def load_model(model_path: str) -> ColorizationNet:
     return model
 
 # Load the model
-model = load_model('model1.pth')
+model = load_model('src/colorization_model/model1.pth')
 
 # Function to colorize the image
 def colorize_image(image_path: str, model, output_format: str = 'png') -> str:
