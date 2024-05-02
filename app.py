@@ -14,6 +14,8 @@ import torch
 from torchvision import transforms
 from PIL import Image
 
+import logging
+
 from src.colorization_model.colorization_all_utils import ColorizationNet
 
 
@@ -84,7 +86,9 @@ def colorize_image(image_path: str, model, output_format: str = 'png') -> str:
 
     Parameters
     ----------
-    img : a PIL Image, or the string of the path of the image
+    image_path : the string of the path of the image
+    model : model used for colorization
+    output_format : format of the output image
 
     Returns
     -------
@@ -235,11 +239,14 @@ def create_puzzle(base_image_path: str, base_image_color_path: str, rows: int = 
 # Menu
 @app.route('/')
 def index():
+    app.logger.info('Accessing application homepage')
     return render_template('index.html')
 
 # use the images path as an app route
 @app.route('/sliding_pieces')
 def sliding_pieces():
+    app.logger.info('Attempting sliding pieces puzzle')
+
     session['previous_url'] = url_for('sliding_pieces')
     session['current_url'] = url_for('sliding_pieces')
 
@@ -255,6 +262,8 @@ def sliding_pieces():
 
 @app.route('/free_pieces')
 def free_pieces():
+    app.logger.info('Attempting free pieces puzzle')
+
     session['previous_url'] = url_for('free_pieces')
     session['current_url'] = url_for('free_pieces')
 
@@ -326,6 +335,24 @@ def upload_image_route():
     # if get, display the download page
     return render_template('index.html')  #go back to the menu if an error occurs
 
+
+########## LOGGING OPTIONS #########
+
+# minimal level of logging
+app.logger.setLevel(logging.INFO)
+
+# Configure handler
+console_handler = logging.StreamHandler()
+
+# Logs formats
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+console_handler.setFormatter(formatter)
+
+# Add the handler
+app.logger.addHandler(console_handler)
+
+
+####### RUNNING THE APP #######
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)
