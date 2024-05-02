@@ -152,7 +152,7 @@ The scripts relevant to the scraping and the training of the images don't have t
 <li><label><input type="checkbox"><strong><code>Git</code></strong> usage </label>
 <ul>
 <li>Presence of a <code>.gitignore</code> file adapted to the language and with additional rules to respect good versioning practices</li>
-<li>COllaborative work : use of branches and <em>pull requests</em></li>
+<li>Collaborative work : use of branches and <em>pull requests</em></li>
 </ul></li>
 <li><label><input type="checkbox"><strong>Presence of a <code>README</code></strong> file introducing the project : context, objective, how to use it ?</label></li>
 <li><label><input type="checkbox"><strong>Presence of a <code>LICENSE</code></strong> file stating the licence (<em>open-source</em>) for project exploitation.</label></li>
