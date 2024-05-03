@@ -136,7 +136,7 @@ The scripts relevant to the scraping and the training of the images don't have t
 <li><label><input type="checkbox">Create a <code>Docker</code> image for the local application</label></li>
 <li><label><input type="checkbox">Deploy the app on <code>SSP Cloud</code> (interactive app) or on <code>Github Pages</code> (static website)</label></li>
 <li><label><input type="checkbox">Customize the theme, the CSS etc. to best highlight the publication results and its main takeaway</label></li>
-<li><label><input type="checkbox">Automate the ingestion of input data so that the site <em>web</em> updates regularly</label></li>
+<li><label><input type="checkbox">Automate the ingestion of input data so that the <em>website</em> updates regularly</label></li>
 <li><label><input type="checkbox">Industrialize deployment in <code>GitOps</code> mode with <code>ArgoCD</code></label></li>
 <li><label><input type="checkbox">Monitor the app : <em>logs</em>, performance metrics, etc.</label></li>
 </ul>
