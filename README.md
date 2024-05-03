@@ -115,7 +115,7 @@ The scripts relevant to the scraping and the training of the images don't have t
 
 </section>
 <section id="track chosen :-dashboard-interactive-app" class="level3">
-<h3 class="anchored" data-anchor-id="parcours-dashboard-application-interactive">Track chosen :dashboard-interactive-app</h3>
+<h2 class="anchored" data-anchor-id="parcours-dashboard-application-interactive">Track chosen :dashboard-interactive-app</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -145,8 +145,8 @@ The scripts relevant to the scraping and the training of the images don't have t
 </div>
 </div>
 </section>
-<section id="checklist-of-development-good-practices" class="level2">
-<h2 class="anchored" data-anchor-id="checklist-des-bonnes-pratiques-de-développement">checklist-of-development-good-practices</h2>
+<section id="Checklist of development good practices" class="level2">
+<h2 class="anchored" data-anchor-id="checklist-des-bonnes-pratiques-de-développement">Checklist of development good practices</h2>
 <p>Below development good practices are a <strong>requirement of this course</strong>. They have to be applied to both <strong>group projects<strong> and </strong>individual code reviews</strong>.</p>
 <ul class="task-list">
 <li><label><input type="checkbox"><strong><code>Git</code></strong> usage </label>
