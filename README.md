@@ -156,7 +156,7 @@ The scripts relevant to the scraping and the training of the images don't have t
 </ul></li>
 <li><label><input type="checkbox"><strong>Presence of a <code>README</code></strong> file introducing the project : context, objective, how to use it ?</label></li>
 <li><label><input type="checkbox"><strong>Presence of a <code>LICENSE</code></strong> file stating the licence (<em>open-source</em>) for project exploitation.</label></li>
-<li><label><input type="checkbox"><strong>Versioning of packages</strong> : presence of a <code>requirements.txt</code> file / environnement file <code>environment.yml</code> for <code>conda</code></label></li>
+<li><label><input type="checkbox"><strong>Versioning of packages</strong> : presence of a <code>requirements.txt</code> file / environment file <code>environment.yml</code> for <code>conda</code></label></li>
 <li><label><input type="checkbox"><strong>Code quality </strong></label>
 <ul>
 <li>Respect of community standards  : use a <em>linter</em> or a <em>formatter</em></li>
