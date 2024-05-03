@@ -99,8 +99,6 @@ The scripts relevant to the scraping and the training of the images don't have t
 
 ## Example of a grayscale image colorized with the model
 
-
-
 <p align="center">
   <img src="static/images/examples/_1.jpg" alt="Grayscale" width = "300">
   <br>
@@ -112,6 +110,7 @@ The scripts relevant to the scraping and the training of the images don't have t
   <br>
   <em>Colorized image</em>
 </p>
+
 
 </section>
 <section id="track chosen :-dashboard-interactive-app" class="level3">
