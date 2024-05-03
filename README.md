@@ -126,18 +126,18 @@ The scripts relevant to the scraping and the training of the images don't have t
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>From an existing project or a new project, develop an interactive app or a <em>dashboard</em> adressing a business issue, then deploy it on a production infrastructure.</p>
+<p>From an existing project or a new project, develop an interactive app or a <em>dashboard</em> addressing a business issue, then deploy it on a production infrastructure.</p>
 </div>
 </div>
 <p><strong>Steps</strong> :</p>
 <ul class="task-list">
 <li><label><input type="checkbox">Fulfil the <em>checklist</em> of development best practices</label></li>
-<li><label><input type="checkbox">Develop an interactive app <code>Streamlit</code> or a static <em>dashboard</em> with <code>Quarto</code> facing a business issue</label></li>
+<li><label><input type="checkbox">Develop an interactive app <code>Streamlit</code> or a static <em>dashboard</em> with <code>Quarto</code> addressing a business issue</label></li>
 <li><label><input type="checkbox">Create a <code>Docker</code> image for the local application</label></li>
 <li><label><input type="checkbox">Deploy the app on <code>SSP Cloud</code> (interactive app) or on <code>Github Pages</code> (static website)</label></li>
 <li><label><input type="checkbox">Customize the theme, the CSS etc. to best highlight the publication results and its main takeaway</label></li>
 <li><label><input type="checkbox">Automate the ingestion of input data so that the site <em>web</em> updates regularly</label></li>
-<li><label><input type="checkbox">industrialize deployment in <code>GitOps</code> mode with <code>ArgoCD</code></label></li>
+<li><label><input type="checkbox">Industrialize deployment in <code>GitOps</code> mode with <code>ArgoCD</code></label></li>
 <li><label><input type="checkbox">Monitor the app : <em>logs</em>, performance metrics, etc.</label></li>
 </ul>
 
