@@ -173,7 +173,7 @@ The scripts relevant to the scraping and the training of the images don't have t
 </ul></li>
 
 
-[### Link to the CD git repo] (https://github.com/yann-Choho/puzzle-deployment.git)
+[Link to the CD git repo] (https://github.com/yann-Choho/puzzle-deployment.git)
 
 ### Link to the website of the application
 https://puzzle.kub.sspcloud.fr/
