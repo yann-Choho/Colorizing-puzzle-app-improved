@@ -1,13 +1,21 @@
 #How to run : python color_to_bw.py path_original path_color path_bw
 #Ex : python color_to_bw.py ./images/original_images/ ./images/color_images/ ./images/bw_images/
 
+"""
+This script takes color images from a specified folder, resizes them to a specified width and height,
+converts them to black and white images, and saves the resized color images and black and white images
+in separate folders. It also creates zip archives of the resized color images and black and white images.
+"""
+
+# importations
 import sys
 import os
 from shutil import make_archive
 from PIL import Image
 
 def resize(img: Image.Image, width: int = 64, height: int = 64) -> Image.Image:
-    """Resize an image to a specified width and height, crop image if necessary to maintain aspect ratio.
+    """Resize an image to a specified width and height, 
+    crop image if necessary to maintain aspect ratio.
     
     Arguments:
         img (Image.Image) : image to resize.
@@ -20,7 +28,8 @@ def resize(img: Image.Image, width: int = 64, height: int = 64) -> Image.Image:
 
     ratio = width/height
     w, h = img.size
-    #If the width is to big, crop the right of the image (the dimensions of the image must be proportional to the specified width and height, ie w/h = width/height).
+    #If the width is to big, crop the right of the image (the dimensions of the image must be
+    #proportional to the specified width and height, ie w/h = width/height).
     if w/h > ratio:
         cropped_img = img.crop((0, 0, h*ratio, h))
     #If the height is too big, crop the top of the image.
@@ -32,7 +41,8 @@ def resize(img: Image.Image, width: int = 64, height: int = 64) -> Image.Image:
     return resized_img
 
 
-def resize_images(path_original: str, path_resized: str, width: int = 64, height: int = 64, file_type: str = 'PNG') -> None:
+def resize_images(path_original: str, path_resized: str,
+                  width: int = 64, height: int = 64, file_type: str = 'PNG') -> None:
     """Resize color images to a specified width and height, save resized images in path_resized.
     
     Arguments:
@@ -49,11 +59,11 @@ def resize_images(path_original: str, path_resized: str, width: int = 64, height
     for img_name in os.listdir(path_original):
         img = Image.open(path_original + img_name)
         resized_img = resize(img, width, height)
-    
+
         #Save resized image
         with open(path_resized + img_name, 'wb') as file:
             resized_img.save(file, file_type)
-    
+
     #Zip the folder
     make_archive(path_resized[:-1], format='zip', root_dir=path_resized)
 
@@ -76,11 +86,11 @@ def convert_color_to_black_and_white(path_color: str, path_bw: str, file_type: s
 
         with open(path_bw + img_name, 'wb') as file:
             bw_img.save(file, file_type)
-    
+
     #Zip the folder
     make_archive(path_bw[:-1], format='zip', root_dir=path_bw)
 
-#Launch code
+# Launch code
 if __name__ == "__main__":
     path_original = sys.argv[1]
     path_color = sys.argv[2]

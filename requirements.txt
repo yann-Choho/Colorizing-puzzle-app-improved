@@ -2,6 +2,7 @@
 --index-url https://download.pytorch.org/whl/cpu #url for pytorch
 --extra-index-url https://pypi.org/simple #url for other packages
 
+pyyaml
 torch==2.1.2
 torchvision==0.16.2
 pytest==7.4.0

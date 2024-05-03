@@ -1,25 +1,35 @@
-#A chrome webdriver is needed to run the script. To download it, see https://chromedriver.chromium.org/downloads.
+#A chrome webdriver is needed to run the script. 
+# To download it, see https://chromedriver.chromium.org/downloads.
 
 #How to run : python scraping.py webdriver_path download_path max_images_per_key key1 key2 key3 ...
 #Ex : python scraping.py ./chromedriver-win64/chromedriver.exe ./images/original_images/ 200 couch castle sea landscape
 
-import sys
+"""
+This code web scraps some images from Google Images with Selenium.
+"""
 
+# importations
+
+import os
+import sys
+import io
+
+import time
+
+from shutil import make_archive
+from PIL import Image
+from typing import Set
+
+import requests
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-import os
-import time
-import requests
-import io
-from shutil import make_archive
-from PIL import Image
-from typing import Set
 
-def get_images_urls(driver: webdriver.Chrome, key: str, max_images: int = 200, delay: int = 10, verbose: bool = True) -> Set[str]:
+def get_images_urls(driver: webdriver.Chrome, key: str, max_images: int = 200, 
+                    delay: int = 10, verbose: bool = True) -> Set[str]:
     """Get images urls for the search word "key".
 
     Arguments:
@@ -35,7 +45,8 @@ def get_images_urls(driver: webdriver.Chrome, key: str, max_images: int = 200, d
 
     
     #Find the search bar, type the key, and enter
-    if len(driver.find_elements_by_id('REsRA')) != 0: #If the driver is on a google image page that is not the homepage
+    if len(driver.find_elements_by_id('REsRA')) != 0: 
+        #If the driver is on a google image page that is not the homepage
         #Find the search bar, clear it, type the keyword "key" and hit Enter
         search = driver.find_element_by_id('REsRA')
         search.clear()
@@ -103,7 +114,7 @@ def download_image(url: str, file_path: str, file_name: str, file_type: str = 'P
 
     except Exception as e:
         print(f'Unsuccessful download of {file_name} : \n {str(e)}')
-        pass
+        # pass
 
 
 def get_images(keys: list[str], webdriver_path: str, download_path: str, max_images_per_key: int = 200, delay: int = 10, file_type: str = 'PNG', verbose: bool = True) -> None:
@@ -150,7 +161,7 @@ def get_images(keys: list[str], webdriver_path: str, download_path: str, max_ima
     driver.close()
 
 
-#Launch code
+# Launch code
 if __name__ == "main":
     webdriver_path = sys.argv[1]
     download_path = sys.argv[2]
